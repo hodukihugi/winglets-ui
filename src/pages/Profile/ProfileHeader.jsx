@@ -3,7 +3,7 @@ import { Stack, Tab, Tabs } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import "../../assets/stylesheet.css";
+import "../../assets/font/stylesheet.css";
 
 const ProfileHeader = () => {
   const navigate = useNavigate();
