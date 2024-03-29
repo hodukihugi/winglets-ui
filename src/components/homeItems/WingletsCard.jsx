@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const WingletsCard = ({ user }) => {
+  const [swiped, setSwiped] = useState(false);
+
   const cardStyles = {
     width: "1174px",
     height: "787px",
@@ -12,34 +14,34 @@ const WingletsCard = ({ user }) => {
     color: "white",
     overflowY: "auto",
     display: "flex",
-    alignItems: "center", // Align items vertically in the middle
+    position: "relative", // Add position relative to position the tick mark
+  };
+
+  const leftHalfStyles = {
+    flex: "0 0 50%", // Take up half of the available space
+    overflow: "hidden", // Hide overflow content
+    borderRadius: "2rem 0 0 2rem", // Rounded corners only on the left side
+    filter: swiped ? "blur(5px)" : "none", // Apply blur effect if swiped is true
+  };
+
+  const rightHalfStyles = {
+    flex: "0 0 50%", // Take up half of the available space
+    padding: "20px",
+    filter: swiped ? "blur(5px)" : "none", // Apply blur effect if swiped is true
+
   };
 
   const profilePictureStyles = {
-    marginRight: "20px",
-    flex: "0 0 auto",
-  };
-
-  const profileImageStyles = {
-    display: "block",
-    width: "200px",
-    height: "auto",
+    width: "100%",
+    height: "100%",
+    objectFit: "cover", // Cover the entire space of the container
   };
 
   const personalInfoStyles = {
-    flex: "1",
-    display: "flex", // Added display flex to align items vertically in the middle
-    flexDirection: "column", // Align items vertically
-    justifyContent: "center", // Center align items vertically
-  };
-
-  const actionButtonsStyles = {
-    display: "flex",
-    justifyContent: "space-between",
+    color: "white",
   };
 
   const actionButtonStyles = {
-    flex: "1",
     margin: "0 5px",
     padding: "10px",
     backgroundColor: "#ff6b6b",
@@ -50,34 +52,49 @@ const WingletsCard = ({ user }) => {
     fontSize: "16px",
   };
 
+  const tickStyles = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    fontSize: "5rem",
+    visibility: swiped ? "visible" : "hidden", // Hide tick initially
+  };
+
+  const handleSwipeRight = () => {
+    setSwiped(true);
+  };
+
   return (
-    <div style={cardStyles} className="card">
-      <div style={profilePictureStyles} className="profile-picture">
-        <img
-          src={user.profilePicture}
-          alt="Profile"
-          style={profileImageStyles}
-        />
+      <div style={cardStyles} className="card">
+        <div style={leftHalfStyles}>
+          <div className="profile-picture">
+            <img
+                src={user.profilePicture}
+                alt="Profile"
+                style={profilePictureStyles}
+            />
+          </div>
+        </div>
+        <div style={rightHalfStyles}>
+          <div style={personalInfoStyles} className="personal-info">
+            <p>{user.name}, {user.age}</p>
+            <p>{user.bio}</p>
+            <p>{user.location}</p>
+          </div>
+          <div className="action-buttons">
+            <button
+                style={actionButtonStyles}
+                className="action-button"
+                onClick={handleSwipeRight}
+                disabled={swiped} // Disable button after it's clicked once
+            >
+              Swipe Right
+            </button>
+          </div>
+        </div>
+        <div style={tickStyles}>✔</div>
       </div>
-      <div style={personalInfoStyles} className="personal-info">
-        <p style={{ margin: "5px 0", color: "white" }}>
-          {user.name}, {user.age}
-        </p>
-        <p style={{ margin: "5px 0", color: "white" }}>{user.bio}</p>
-        <p style={{ margin: "5px 0", color: "white" }}>{user.location}</p>
-      </div>
-      <div style={actionButtonsStyles} className="action-buttons">
-        <button style={actionButtonStyles} className="action-button">
-          Swipe Right
-        </button>
-        <button style={actionButtonStyles} className="action-button">
-          Swipe Left
-        </button>
-        <button style={actionButtonStyles} className="action-button">
-          Connect
-        </button>
-      </div>
-    </div>
   );
 };
 
