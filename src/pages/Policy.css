@@ -1,0 +1,36 @@
+/* Policy.css */
+
+/* Áp dụng màu nền cho toàn bộ trang */
+body {
+  background-color: #181a1b;
+}
+
+/* Style for the privacy policy container */
+.privacy-policy-container {
+  color: white;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 800px; /* Định nghĩa chiều rộng tối đa của container */
+}
+
+/* Style for the heading */
+.privacy-policy-container h1 {
+  text-align: center; /* Căn giữa tiêu đề */
+}
+
+/* Style for the privacy policy content */
+.privacy-policy-content {
+  margin-top: 20px; /* Khoảng cách với tiêu đề */
+}
+
+/* Style for paragraphs */
+.privacy-policy-content p {
+  margin-bottom: 15px; /* Khoảng cách giữa các đoạn văn bản */
+}
+
+/* Style for section headings */
+.privacy-policy-content h2,
+.privacy-policy-content h3 {
+  color: #ff6347; /* Màu sắc cho tiêu đề */
+  margin-top: 20px; /* Khoảng cách với tiêu đề trước đó */
+}
