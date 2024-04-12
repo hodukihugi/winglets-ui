@@ -196,7 +196,7 @@ function WingletsCard() {
           You swiped {lastDirection}
         </h2>
       ) : (
-        <h2 className="infoText"></h2>
+        <h2 className="infoText">hihi</h2>
       )}
     </div>
   );

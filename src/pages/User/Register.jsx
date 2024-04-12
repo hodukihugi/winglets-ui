@@ -50,7 +50,7 @@ function Register() {
 
   const handleRegister = () => {
     if (validateForm()) {
-      navigate("/login");
+      navigate("/introduce");
     }
   };
   return (
