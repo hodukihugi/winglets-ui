@@ -4,7 +4,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { useState } from "react";
 import myProfile from "../profileItems/myProfile";
-const Header = () => {
+const Header = ({ matchedProfile }) => {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -17,6 +17,60 @@ const Header = () => {
     await new Promise((resolve) => setTimeout(resolve, 400));
     setIsTransitioning(false);
     navigate("/profile");
+  };
+  const matchedItem = (item) => {
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          height: "80px",
+          backgroundColor: "#181a1b", // Màu nền ban đầu
+          transition: "box-shadow 0.3s ease", // Thêm transition cho box-shadow
+          boxShadow: "0 0 0 0 rgba(0,0,0,0.3)", // Hiệu ứng box-shadow ban đầu
+          borderRadius: "8px", // Bo tròn các góc của khối
+          marginTop: "5px",
+        }}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.boxShadow =
+            "0 0 20px 5px rgba(255, 255, 255, 0.7)")
+        } // Hiệu ứng khi di chuột vào
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.boxShadow = "0 0 0 0 rgba(0,0,0,0.3)")
+        } // Hiệu ứng khi di chuột ra
+      >
+        <img
+          src={item.avatar}
+          alt=""
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: "50%",
+            cursor: "pointer",
+            marginRight: "20px",
+          }}
+        ></img>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <h1
+            style={{
+              color: "white",
+              margin: 0,
+              marginBottom: "5px",
+              fontSize: "25px",
+            }}
+          >
+            {item.name}
+          </h1>
+          <span
+            style={{
+              color: "#9b9386",
+            }}
+          >
+            {item.lastMessage}
+          </span>
+        </div>
+      </div>
+    );
   };
   return (
     <Stack
@@ -37,11 +91,11 @@ const Header = () => {
         alignItems="center"
         spacing={2}
         sx={{ marginTop: "10px" }}
+        onClick={() => navigateToProfile()}
       >
         <img
           src={myProfile.img}
           alt="profilepicture"
-          onClick={() => navigateToProfile()}
           style={{
             width: 50,
             height: 50,
@@ -101,7 +155,10 @@ const Header = () => {
         </Button>
       </Stack>
 
-      <span style={{ color: "white", marginTop: "20px" }}>Conversations</span>
+      <span style={{ color: "white", marginTop: "20px", marginBottom: "5px" }}>
+        Conversations
+      </span>
+      {matchedProfile.map((item) => matchedItem(item))}
     </Stack>
   );
 };

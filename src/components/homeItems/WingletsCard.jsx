@@ -1,13 +1,15 @@
 import React, { useState, useMemo, useRef } from "react";
 import TinderCard from "react-tinder-card";
-import Profile from "../profileItems/matchedProfile";
+import Profile from "../profileItems/listProfile";
 import DoneIcon from "@mui/icons-material/Done";
 import ClearIcon from "@mui/icons-material/Clear";
 import UndoIcon from "@mui/icons-material/Undo";
-function WingletsCard() {
+import { useEffect } from "react";
+function WingletsCard({ matchedProfile, setMatchedProfile }) {
   const [currentIndex, setCurrentIndex] = useState(Profile.length - 1);
-  const [lastDirection, setLastDirection] = useState();
   const currentIndexRef = useRef(currentIndex);
+  const [currentView, setCurrentView] = useState(0);
+
   const childRefs = useMemo(
     () =>
       Array(Profile.length)
@@ -25,8 +27,13 @@ function WingletsCard() {
   const canSwipe = currentIndex >= 0;
 
   const swiped = (direction, nameToDelete, index) => {
-    setLastDirection(direction);
     updateCurrentIndex(index - 1);
+    if (direction === "right") {
+      const profile = Profile[index];
+      if (!matchedProfile.includes(profile)) {
+        setMatchedProfile((prevProfiles) => [...prevProfiles, profile]);
+      }
+    }
   };
 
   const outOfFrame = (name, idx) => {
@@ -43,6 +50,11 @@ function WingletsCard() {
   const goBack = async () => {
     if (!canGoBack) return;
     const newIndex = currentIndex + 1;
+    const profile = Profile[newIndex];
+    const updatedMatchedProfile = matchedProfile.filter(
+      (p) => JSON.stringify(p) !== JSON.stringify(profile)
+    );
+    setMatchedProfile(updatedMatchedProfile);
     updateCurrentIndex(newIndex);
     await childRefs[newIndex].current.restoreCard();
   };
@@ -95,6 +107,56 @@ function WingletsCard() {
     height: "100px",
   };
 
+  const [moving, setMoving] = useState(false);
+
+  const moveDown = () => {
+    if (!moving && currentView <= 0) {
+      setMoving(true);
+      setCurrentView((prevView) => prevView + 1);
+      setTimeout(() => {
+        setMoving(false);
+      }, 500);
+    }
+  };
+
+  const moveUp = () => {
+    if (!moving && currentView >= 0) {
+      setMoving(true);
+      setCurrentView((prevView) => prevView - 1);
+      setTimeout(() => {
+        setMoving(false);
+      }, 500);
+    }
+  };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      switch (event.key) {
+        case "ArrowUp":
+          moveUp();
+          break;
+        case "ArrowDown":
+          moveDown();
+          break;
+        case "ArrowLeft":
+          swipe("left");
+          setCurrentView(0);
+          break;
+        case "ArrowRight":
+          swipe("right");
+          setCurrentView(0);
+          break;
+        default:
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [currentIndex]);
+
   return (
     <div>
       <div style={containerStyles}>
@@ -126,56 +188,103 @@ function WingletsCard() {
                 zIndex: index === currentIndex ? 1 : 0,
               }}
             >
-              <div
-                style={{
-                  width: "1174px",
-                  height: "787px",
-                  backgroundColor: "#E27B83",
-                  borderRadius: "2rem",
-                  overflow: "hidden",
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-              >
+              {currentView === 0 && (
                 <div
+                  className="first-div"
                   style={{
-                    flex: "0 0 50%",
+                    width: "1174px",
+                    height: "787px",
+                    backgroundColor: "#E27B83",
+                    borderRadius: "2rem",
                     overflow: "hidden",
-                    borderRadius: "2rem 0 0 2rem",
-                    background: `url(${character.img})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    position: "relative",
+                    display: "flex",
+                    flexDirection: "row",
+                    transition: "opacity 0.5s ease-in-out",
                   }}
                 >
                   <div
                     style={{
-                      position: "absolute",
-                      bottom: "20px",
-                      left: "20px",
-                      color: "white",
-                      fontSize: "60px",
+                      flex: "0 0 50%",
+                      overflow: "hidden",
+                      borderRadius: "2rem 0 0 2rem",
+                      background: `url(${character.avatar})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      position: "relative",
                     }}
                   >
-                    {character.name}, {character.age}
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: "20px",
+                        left: "20px",
+                        color: "white",
+                        fontSize: "60px",
+                      }}
+                    >
+                      {character.name}, {character.age}
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flex: "0 0 50%",
+                      wordWrap: "break-word",
+                      position: "relative",
+                      flexDirection: "column",
+                      textAlign: "center",
+                    }}
+                  >
+                    <h1>About {character.name}</h1>
+                    <span>{character.bio}</span>
                   </div>
                 </div>
+              )}
+              {currentView === 1 && (
                 <div
+                  className="second-div"
                   style={{
+                    width: "1174px",
+                    height: "787px",
+                    backgroundColor: "#E27B83",
+                    borderRadius: "2rem",
+                    overflow: "hidden",
                     display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flex: "0 0 50%",
-                    wordWrap: "break-word",
-                    position: "relative",
-                    flexDirection: "column",
-                    textAlign: "center",
+                    flexDirection: "row",
                   }}
                 >
-                  <h1>About {character.name}</h1>
-                  <span>{character.bio}</span>
+                  <div
+                    style={{
+                      flex: "0 0 50%",
+                      overflow: "hidden",
+                      borderRadius: "2rem 0 0 2rem",
+                      background: `url(${character.images[0]})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      position: "relative",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flex: "0 0 50%",
+                      wordWrap: "break-word",
+                      position: "relative",
+                      flexDirection: "column",
+                      textAlign: "center",
+                    }}
+                  >
+                    <h1>Hobby: {character.hobby}</h1>
+                    <span>
+                      {character.horoscope} ,{character.job}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </TinderCard>
         ))}
@@ -196,7 +305,7 @@ function WingletsCard() {
           You swiped {lastDirection}
         </h2>
       ) : (
-        <h2 className="infoText">hihi</h2>
+        <h2 className="infoText"></h2>
       )}
     </div>
   );

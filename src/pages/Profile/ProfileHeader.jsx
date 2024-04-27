@@ -42,12 +42,9 @@ const ProfileHeader = () => {
           alignItems="center"
           marginTop={"20px"}
           marginLeft={"15px"}
+          onClick={() => navigateToHome()}
         >
-          <Button
-            onClick={() => navigateToHome()}
-            // hidden={isTransitioning}
-            sx={{ p: 0 }}
-          >
+          <Button hidden={isTransitioning} sx={{ p: 0 }}>
             <ArrowBackIosIcon sx={{ color: "white" }} />
           </Button>
           <img
