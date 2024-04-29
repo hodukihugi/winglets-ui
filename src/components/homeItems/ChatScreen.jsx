@@ -1,6 +1,19 @@
 import { Avatar, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-const ChatScreen = ({ matchedProfile }) => {
+import ChatScreenHeader from "./ChatScreenHeader";
+import matchedPeople from "../profileItems/matchedPeople";
+import { useParams } from "react-router-dom";
+const ChatScreen = () => {
+  let { personId } = useParams();
+  console.log("Person ID:", personId);
+
+  const person = matchedPeople.find((p) => p.id === parseInt(personId));
+  console.log("Person:", person);
+
+  if (!person) {
+    return <div>Person not found!</div>;
+  }
+
   const chatScreenMessage = {
     display: "flex",
     alignItems: "center",
@@ -26,15 +39,13 @@ const ChatScreen = ({ matchedProfile }) => {
     display: "flex",
     alignItems: "center",
     padding: "5px",
-    width: "1500px",
+    width: "100%",
     justifyContent: "space-between",
     position: "fixed",
     bottom: 0,
     backgroundColor: "white",
     borderTop: "1px solid #ccc",
     marginTop: "30px",
-    marginLeft: "10px",
-    marginRight: "10px",
   };
 
   const chatScreenInputField = {
@@ -47,8 +58,7 @@ const ChatScreen = ({ matchedProfile }) => {
 
   const chatScreenInputButton = {
     border: "none",
-    backgroundColor: "blue",
-    color: "#fe3d71",
+    color: "blue",
     padding: "5px 5px",
     marginRight: "50px",
     display: "flex",
@@ -57,52 +67,57 @@ const ChatScreen = ({ matchedProfile }) => {
   };
 
   return (
-    <div
-      className="chatScreenContainer"
-      style={{
-        marginLeft: "405px",
-        marginTop: "300px",
-        backgroundColor: "inherit",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      {matchedProfile &&
-        matchedProfile.messages &&
-        matchedProfile.messages.map((message, index) =>
-          message.name ? (
-            <div
-              key={index}
-              className="chatScreenMessage"
-              style={chatScreenMessage}
-            >
-              <Avatar
-                className="chatScreenAvatar"
-                alt={message.name}
-                src={matchedProfile.avatar}
-              />
-              <p style={chatScreenText}>{message.message}</p>
-            </div>
-          ) : (
-            <div key={index} style={chatScreenMessage}>
-              <p style={chatScreenTextUser}>{message.message}</p>
-            </div>
-          )
-        )}
-      <form className="chatScreenInput" style={chatScreenInputContainer}>
-        <input
-          type="text"
-          placeholder="Type a message"
-          style={chatScreenInputField}
-          name="messageInput"
-        />
-        <Button
-          style={chatScreenInputButton}
-          type="submit"
-          endIcon={<SendIcon />}
-        ></Button>
-      </form>
+    <div>
+      <ChatScreenHeader person={person} />
+      <div
+        className="chatScreenContainer"
+        style={{
+          marginTop: "300px",
+          backgroundColor: "inherit",
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {person &&
+          person.messages &&
+          person.messages.map((message, index) =>
+            message.name ? (
+              <div
+                key={index}
+                className="chatScreenMessage"
+                style={chatScreenMessage}
+              >
+                <Avatar
+                  className="chatScreenAvatar"
+                  alt={message.name}
+                  src={person.avatar} // Fixed this line
+                />
+                <p style={chatScreenText}>{message.message}</p>
+              </div>
+            ) : (
+              <div key={index} style={chatScreenMessage}>
+                <p style={chatScreenTextUser}>{message.message}</p>
+              </div>
+            )
+          )}
+        <form className="chatScreenInput" style={chatScreenInputContainer}>
+          <input
+            type="text"
+            placeholder="Type a message"
+            style={chatScreenInputField}
+            name="messageInput"
+          />
+          <Button
+            style={chatScreenInputButton}
+            type="submit"
+            // Add some content for the button, for example:
+            endIcon={<SendIcon />}
+          >
+            Send
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };

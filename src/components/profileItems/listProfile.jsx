@@ -6,7 +6,6 @@ const listProfile = [
     age: 30,
     location: "New York",
     bio: "A software engineer who loves hiking and photography.",
-    lastMessage: "hihihahaha",
     horoscope: "Aries",
     hobby: "watch movie",
     job: "police",
@@ -24,7 +23,6 @@ const listProfile = [
     age: 28,
     location: "Los Angeles",
     bio: "A graphic designer with a passion for travel and trying new foods.",
-    lastMessage: "dmm",
     images: [
       "https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg",
       "https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg",
@@ -39,7 +37,6 @@ const listProfile = [
     age: 35,
     location: "Chicago",
     bio: "An artist who enjoys painting landscapes and playing the guitar.",
-    lastMessage: "vcl",
     images: [
       "https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg",
       "https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg",
@@ -54,7 +51,6 @@ const listProfile = [
     age: 25,
     location: "San Francisco",
     bio: "A yoga instructor who loves meditation and exploring new cultures.",
-    lastMessage: "kkk",
     images: [
       "https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg",
       "https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg",
@@ -69,7 +65,6 @@ const listProfile = [
     age: 40,
     location: "Miami",
     bio: "A chef with a passion for creating fusion dishes and experimenting with flavors.",
-    lastMessage: "fff",
     images: [
       "https://www.shutterstock.com/image-photo/profile-picture-smiling-successful-young-260nw-2040223583.jpg",
       "https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg",

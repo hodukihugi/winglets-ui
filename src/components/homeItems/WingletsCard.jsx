@@ -30,7 +30,7 @@ function WingletsCard({ matchedProfile, setMatchedProfile }) {
     updateCurrentIndex(index - 1);
     if (direction === "right") {
       const profile = Profile[index];
-      if (!matchedProfile.includes(profile)) {
+      if (matchedProfile && !matchedProfile.includes(profile)) {
         setMatchedProfile((prevProfiles) => [...prevProfiles, profile]);
       }
     }
@@ -48,7 +48,7 @@ function WingletsCard({ matchedProfile, setMatchedProfile }) {
   };
 
   const goBack = async () => {
-    if (!canGoBack) return;
+    if (!canGoBack || !matchedProfile) return; // Add a null check for matchedProfile
     const newIndex = currentIndex + 1;
     const profile = Profile[newIndex];
     const updatedMatchedProfile = matchedProfile.filter(
@@ -58,7 +58,6 @@ function WingletsCard({ matchedProfile, setMatchedProfile }) {
     updateCurrentIndex(newIndex);
     await childRefs[newIndex].current.restoreCard();
   };
-
   const containerStyles = {
     width: "1174px",
     height: "787px",

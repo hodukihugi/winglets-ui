@@ -2,15 +2,13 @@ import { Stack } from "@mui/material";
 import Header from "../components/homeItems/Header";
 import WingletsCard from "../components/homeItems/WingletsCard";
 import { useState } from "react";
-import ChatScreen from "../components/homeItems/ChatScreen";
-import matchedProfile from "../components/profileItems/matchedProfile";
-import ChatScreenHeader from "../components/homeItems/ChatScreenHeader";
+import matchedPeople from "../components/profileItems/matchedPeople";
 const Home = () => {
-  const [matchProfile, setMatchProfile] = useState([]);
+  const [matchedProfile, setMatchedProfile] = useState([]);
   return (
     <div>
-      <Header matchedProfile={matchProfile} />
-      {/*<Stack
+      <Header matchedProfile={matchedProfile} matchedPeople={matchedPeople} />
+      <Stack
         sx={{
           marginLeft: "400px",
           height: "80px",
@@ -27,9 +25,7 @@ const Home = () => {
           matchedProfile={matchedProfile}
           setMatchedProfile={setMatchedProfile}
         />
-      </div> */}
-      <ChatScreenHeader matchedProfile={matchedProfile} />
-      <ChatScreen matchedProfile={matchedProfile} />
+      </div>
     </div>
   );
 };

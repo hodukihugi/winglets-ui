@@ -8,11 +8,13 @@ import Contact from "./pages/Profile/ContactAndFAQ";
 import ProfileHeader from "./pages/Profile/ProfileHeader";
 import Home from "./pages/Home";
 import Introduce from "./pages/User/Introduce";
+import ChatScreen from "./components/homeItems/ChatScreen";
 function App() {
   return (
     <Router>
       <Routes>
-        <Route index element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/chat/:personId" element={<ChatScreen />} />
         <Route path="/profile" element={<ProfileHeader />}>
           <Route index element={<EditProfile />} />
           <Route path="faq" element={<Contact />} />

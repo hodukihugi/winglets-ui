@@ -2,25 +2,24 @@ import { Avatar, Button, Stack } from "@mui/material";
 import CallIcon from "@mui/icons-material/Call";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CloseIcon from "@mui/icons-material/Close";
-const ChatScreenHeader = ({ matchedProfile }) => {
+import { useNavigate } from "react-router-dom";
+const ChatScreenHeader = ({ person }) => {
+  const navigate = useNavigate();
   return (
     <Stack
       sx={{
-        position: "fixed", // Set position to fixed
+        position: "fixed",
         top: 0,
-        width: "1500px",
+        width: "100%",
         height: "80px",
         borderBottom: "1px solid #857f74",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
         marginBottom: "20px",
-        marginLeft: "415px",
         backgroundColor: "#181a1b",
         flexDirection: "row",
-        marginBottom: "20px",
-        zIndex: 1, // Set a high z-index to ensure it appears above other content
-        justifyContent: "space-between", // Align items to the start and end of the row
+        zIndex: 1,
+        justifyContent: "space-between",
       }}
     >
       <Stack
@@ -32,16 +31,14 @@ const ChatScreenHeader = ({ matchedProfile }) => {
       >
         <Avatar
           className="chatScreenAvatar"
-          alt={matchedProfile.name}
-          src={matchedProfile.avatar}
+          alt={person.name}
+          src={person.avatar}
           sx={{
             width: 50,
             height: 50,
           }}
         />
-        <h1 style={{ color: "white", marginLeft: "20px" }}>
-          {matchedProfile.name}
-        </h1>
+        <h1 style={{ color: "white", marginLeft: "20px" }}>{person.name}</h1>
       </Stack>
 
       <Stack direction="row">
@@ -53,7 +50,7 @@ const ChatScreenHeader = ({ matchedProfile }) => {
           <MoreVertIcon />
         </Button>
 
-        <Button>
+        <Button onClick={() => navigate("/")}>
           <CloseIcon />
         </Button>
       </Stack>
