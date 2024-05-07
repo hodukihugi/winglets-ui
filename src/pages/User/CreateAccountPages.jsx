@@ -4,23 +4,22 @@ import Stack from "@mui/material/Stack";
 import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Grid from "@mui/material/Grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import dayjs from "dayjs";
-import Job from "../../components/introducingPageItems/Job";
-import InterestsComponent from "../../components/introducingPageItems/Interests";
-import AgePreferences from "../../components/introducingPageItems/AgePreferences";
-import { useNavigate } from "react-router-dom";
-
-function Introduce() {
+import calculateZodiacSign from "./zodiacSign";
+import Jobs from "./Job";
+import InterestsComponent from "./Interests";
+import AgePreferences from "./AgePreferences";
+function App() {
   const [accountname, setAccountname] = useState("");
   const [accountemail, setAccountemail] = useState("");
   const [birthdate, setBirthdate] = useState(null);
+  const [zodiacSign, setZodiacSign] = useState(null);
+
   const [avatar, setAvatar] = useState(null);
-  const navigate = useNavigate();
   const onAccountnameChanged = (e) => {
     setAccountname(e.target.value);
   };
@@ -30,6 +29,8 @@ function Introduce() {
 
   const handleBirthdateChange = (date) => {
     setBirthdate(date);
+    const sign = calculateZodiacSign(date);
+    setZodiacSign(sign);
   };
   const calculateAge = (birthdate) => {
     if (!birthdate) return null;
@@ -49,9 +50,7 @@ function Introduce() {
   const handleAvatarDelete = () => {
     setAvatar(null);
   };
-  const handleCreate = async () => {
-    navigate("/");
-  };
+
   return (
     <div
       style={{
@@ -59,7 +58,6 @@ function Introduce() {
         paddingTop: "50px",
         minHeight: "100vh",
         color: "black",
-        backgroundColor: "white",
       }}
     >
       <h2> Create account </h2>
@@ -71,14 +69,10 @@ function Introduce() {
               label="Name"
               variant="standard"
               type="text"
+              sx={{ color: "white", maxWidth: "507px" }}
               value={accountname}
               onChange={onAccountnameChanged}
-              InputProps={{
-                style: { color: "black", maxWidth: "507px" },
-              }}
-              InputLabelProps={{
-                style: { color: "pink", maxWidth: "507px" },
-              }}
+              InputProps={{ style: { color: "black" } }}
             />
 
             <TextField
@@ -86,16 +80,11 @@ function Introduce() {
               label="Email"
               variant="standard"
               type="text"
+              sx={{ color: "white", maxWidth: "507px" }}
               value={accountemail}
               onChange={onAccountemailChanged}
-              InputProps={{
-                style: { color: "white", maxWidth: "507px" },
-              }}
-              InputLabelProps={{
-                style: { color: "pink", maxWidth: "507px" },
-              }}
+              InputProps={{ style: { color: "black" } }}
             />
-
             <h1 style={{ fontSize: "20px", textAlign: "left" }}>
               Date of birth
             </h1>
@@ -103,11 +92,12 @@ function Introduce() {
               <DatePicker
                 value={birthdate}
                 onChange={handleBirthdateChange}
-                sx={{ color: "black", maxWidth: "507px" }}
+                sx={{ color: "white", maxWidth: "507px" }}
               />
             </LocalizationProvider>
             <h1 style={{ fontSize: "20px", textAlign: "left" }}>
               Age: {calculateAge(birthdate)}
+              {zodiacSign && <span>, Zodiac: {zodiacSign}</span>}
             </h1>
 
             <h1 style={{ fontSize: "20px", textAlign: "left" }}>Gender</h1>
@@ -149,7 +139,7 @@ function Introduce() {
                 </Button>
               </Grid>
             </Grid>
-            <Job />
+            <Jobs />
             <InterestsComponent />
             <AgePreferences />
           </Stack>
@@ -210,7 +200,7 @@ function Introduce() {
           marginTop: "20px",
         }}
       >
-        <Button variant="contained" color="primary" onClick={handleCreate}>
+        <Button variant="contained" color="primary">
           Next Page
         </Button>
       </div>
@@ -218,4 +208,4 @@ function Introduce() {
   );
 }
 
-export default Introduce;
+export default App;

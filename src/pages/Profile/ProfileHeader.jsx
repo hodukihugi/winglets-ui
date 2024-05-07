@@ -45,7 +45,7 @@ const ProfileHeader = () => {
         >
           <Button
             onClick={() => navigateToHome()}
-            // hidden={isTransitioning}
+            hidden={isTransitioning}
             sx={{ p: 0 }}
           >
             <ArrowBackIosIcon sx={{ color: "white" }} />
@@ -98,6 +98,7 @@ const ProfileHeader = () => {
             label="Settings"
             value={1}
             selected={value === 1}
+            onClick={() => navigate("/profile/settings")}
             sx={{
               marginBottom: "10px",
               fontSize: 20,
