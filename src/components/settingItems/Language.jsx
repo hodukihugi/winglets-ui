@@ -53,9 +53,6 @@ const Language = () => {
             sx={{
               width: "416px",
               height: "40px",
-              "&:hover": {
-                borderColor: "rgba(255, 255, 255, 0.5)", // Thay đổi màu viền khi hover
-              },
             }}
           >
             <InputLabel
