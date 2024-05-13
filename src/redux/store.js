@@ -6,9 +6,9 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const loggerMiddleware = (store) => (next) => (action) => {
-  console.log("Dispatching", action);
+  //console.log("Dispatching", action);
   const result = next(action);
-  console.log("Next state", store.getState());
+  //console.log("Next state", store.getState());
   return result;
 };
 const persistConfig = {
@@ -33,5 +33,4 @@ export const store = configureStore({
     })
       .concat(loggerMiddleware)
       .concat(authApi.middleware)
-      .concat(userApi.middleware),
 });

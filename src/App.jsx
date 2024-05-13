@@ -9,6 +9,21 @@ import ProfileHeader from "./pages/Profile/ProfileHeader";
 import Home from "./pages/Home";
 import Introduce from "./pages/User/Introduce";
 function App() {
+
+  // const toasts = useAppSelector(selectToasts);
+  // const Toasts = () =>
+  //     toasts.map(toast => (
+  //         <Snackbar
+  //             key={toast._id}
+  //             open
+  //             autoHideDuration={toast.durationInSeconds ? toast.durationInSeconds * 1000 : 6000}
+  //             onClose={() => handleToastClose(toast._id)}
+  //         >
+  //           <Alert onClose={() => handleToastClose(toast._id)} severity={toast.type} sx={{width: '100%'}}>
+  //             {toast.message}
+  //           </Alert>
+  //         </Snackbar>
+  //     ));
   return (
     <Router>
       <Routes>
