@@ -299,13 +299,6 @@ function WingletsCard({ matchedProfile, setMatchedProfile }) {
           <DoneIcon sx={{ fontSize: "60px" }} />
         </button>
       </div>
-      {lastDirection ? (
-        <h2 key={lastDirection} className="infoText">
-          You swiped {lastDirection}
-        </h2>
-      ) : (
-        <h2 className="infoText"></h2>
-      )}
     </div>
   );
 }
