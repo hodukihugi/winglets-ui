@@ -1,11 +1,13 @@
 import { Stack } from "@mui/material";
 import Header from "../components/homeItems/Header";
 import WingletsCard from "../components/homeItems/WingletsCard";
-
+import { useState } from "react";
+import matchedPeople from "../components/profileItems/matchedPeople";
 const Home = () => {
+  const [matchedProfile, setMatchedProfile] = useState([]);
   return (
     <div>
-      <Header />
+      <Header matchedProfile={matchedProfile} matchedPeople={matchedPeople} />
       <Stack
         sx={{
           marginLeft: "400px",
@@ -19,7 +21,10 @@ const Home = () => {
         <h1 style={{ color: "#EB9DA3" }}>Winglets</h1>
       </Stack>
       <div style={{ marginLeft: "400px", padding: "10px" }}>
-        <WingletsCard />
+        <WingletsCard
+          matchedProfile={matchedProfile}
+          setMatchedProfile={setMatchedProfile}
+        />
       </div>
     </div>
   );

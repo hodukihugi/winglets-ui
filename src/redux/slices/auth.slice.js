@@ -4,19 +4,19 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: {
     userId: null,
-    username: null,
+    Email: null,
     authToken: null,
   },
   reducers: {
     logout: (state) => {
       state.authToken = null;
       state.userId = null;
-      state.username = null;
+      state.Email = null;
     },
     setAuth: (state, action) => {
       state.authToken = action.payload.authToken;
       state.userId = action.payload.userId;
-      state.username = action.payload.username;
+      state.Email = action.payload.Email;
     },
   },
 });
