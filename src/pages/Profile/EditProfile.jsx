@@ -5,7 +5,7 @@ import Hobby from "../../components/profilePageItems/Hobby";
 import Horoscope from "../../components/profilePageItems/Horoscope";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import Profile from "../../components/profileItems/matchedProfile";
+import Profile from "../../components/profileItems/listProfile";
 const EditProfile = () => {
   return (
     <div
