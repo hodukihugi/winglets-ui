@@ -21,7 +21,21 @@ export const authApi = createApi({
         body: req,
       }),
     }),
+    sendEmailToken: builder.mutation({
+      query: (req) =>({
+        url: '/api/auth/send-verification-email',
+        method: 'POST',
+        body: req,
+      })
+    }),
+    verifyEmail: builder.mutation({
+      query: (req) =>({
+        url: '/api/auth/verify-email',
+        method: 'POST',
+        body: req,
+      })
+    })
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useSendEmailTokenMutation , useVerifyEmailMutation} = authApi;
