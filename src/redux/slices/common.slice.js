@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   toasts: [],
@@ -6,20 +6,18 @@ const initialState = {
 };
 
 const commonSlice = createSlice({
-  name: "common",
+  name: 'common',
   initialState,
   reducers: {
     addToast: (state, action) => {
       state.toasts.push({
         _id: Date.now().toString(),
-        type: action.payload.type ? action.payload.type : "success",
+        type: action.payload.type ? action.payload.type : 'success',
         ...action.payload,
       });
     },
     removeToast: (state, action) => {
-      state.toasts = state.toasts.filter(
-        (toast) => toast._id !== action.payload
-      );
+      state.toasts = state.toasts.filter((toast) => toast._id !== action.payload);
     },
     showTopLoading: (state) => {
       state.showTopLoading = true;
@@ -30,8 +28,7 @@ const commonSlice = createSlice({
   },
 });
 
-export const { addToast, removeToast, showTopLoading, hideTopLoading } =
-  commonSlice.actions;
+export const { addToast, removeToast, showTopLoading, hideTopLoading } = commonSlice.actions;
 
 export const selectToasts = (state) => state.common.toasts;
 

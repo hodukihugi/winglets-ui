@@ -2,17 +2,20 @@ import {Box, Button, Stack, TextField, Typography} from "@mui/material";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import logo from "../../assets/image/logo.png";
-import {CheckCircle} from "@mui/icons-material";
+import {useDispatch} from "react-redux";
+import {addToast, hideTopLoading, showTopLoading} from "../../redux/slices/common.slice";
+import {useRegisterMutation} from "../../redux/apis/auth.api";
+import {setRegister} from "../../redux/slices/register.slice";
 
 function Register() {
     const navigate = useNavigate();
-    const [Email, setEmail] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmedPassword, setConfirmedPassword] = useState("");
-    const [EmailErr, setEmailErr] = useState("");
+    const [emailErr, setEmailErr] = useState("");
     const [passwordErr, setPasswordErr] = useState("");
     const [confirmPasswordErr, setConfirmPasswordErr] = useState("");
-    const [emailVerified, setEmailVerified] = useState(false);
+    const[register]= useRegisterMutation();
 
     const onEmailInputChanged = (e) => {
         setEmail(e.target.value);
@@ -28,7 +31,7 @@ function Register() {
     };
     const handleValidation = () => {
         let valid = true;
-        if (Email === "") {
+        if (email === "") {
             setEmailErr("Vui lòng nhập họ và tên");
             valid = false;
         }
@@ -50,10 +53,30 @@ function Register() {
         }
         return valid;
     };
-
-    const handleRegister = () => {
+    const dispatch = useDispatch();
+    const handleRegister = async () => {
         if (handleValidation()) {
-            setEmailVerified(true);
+            try {
+                dispatch(showTopLoading());
+                const response = await register({email: email, password: password});
+                console.log(response);
+                if (response && response.data && response.data.message === "signup successfully, check your mail to verify your account") {
+                    dispatch(addToast({
+                        type: 'success',
+                        message: "email verifying"
+                    }))
+
+                    dispatch(setRegister({
+                        email: email,
+                    }))
+
+                    navigate("/verification");
+                }
+
+                dispatch(hideTopLoading());
+            } catch (error) {
+                console.log(error);
+            }
         }
     };
     return (
@@ -69,14 +92,14 @@ function Register() {
                         Register Page
                     </Typography>
                     <img src={logo} alt="Logo" style={{width: "500px"}}/>{" "}
-                    <Stack direction='row'>
+
                         <TextField
-                            error={EmailErr !== ""}
-                            helperText={EmailErr}
+                            error={emailErr !== ""}
+                            helperText={emailErr}
                             id="Email"
                             label="Email"
                             variant="filled"
-                            value={Email}
+                            value={email}
                             onChange={onEmailInputChanged}
                             InputLabelProps={{
                                 style: {color: "#ffffff"},
@@ -104,9 +127,7 @@ function Register() {
                                 },
                             }}
                         />
-                        {emailVerified &&
-                            <CheckCircle style={{color: 'green', marginLeft: '8px'}}/>}
-                    </Stack>
+
 
                     <TextField
                         error={passwordErr !== ""}
@@ -199,7 +220,7 @@ function Register() {
                         color="primary"
                         onClick={handleRegister}
                     >
-                        {emailVerified ? 'Register' : 'Verify'}
+                        Register
                     </Button>
 
                     </Stack>
