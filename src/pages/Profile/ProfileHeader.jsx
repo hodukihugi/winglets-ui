@@ -4,7 +4,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import "../../assets/font/stylesheet.css";
-import myProfile from "../../components/profileItems/myProfile";
+import MyProfile from "../../components/profileItems/myProfile";
 
 const ProfileHeader = () => {
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ const ProfileHeader = () => {
             <ArrowBackIosIcon sx={{ color: "white" }} />
           </Button>
           <img
-            src={myProfile.img}
+            src={MyProfile.avatar}
             alt="profilePicture"
             style={{
               width: 50,

@@ -150,7 +150,7 @@ const Header = ({ matchedProfile, matchedPeople }) => {
         onClick={() => navigateToProfile()}
       >
         <img
-          src={myProfile.img}
+          src={myProfile.avatar}
           alt="profilepicture"
           style={{
             width: 50,

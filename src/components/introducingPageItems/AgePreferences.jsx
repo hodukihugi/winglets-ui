@@ -9,7 +9,7 @@ function valuetext(value) {
   return `${value} years`;
 }
 
-const  AgePreferences = () => {
+const AgePreferences = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const toggleExpansion = () => {
     setIsExpanded(!isExpanded);
@@ -26,22 +26,33 @@ const  AgePreferences = () => {
       <Grid
         container
         spacing={2}
-        justifyContent="flex-start"
-        sx={{ marginTop: "10px" }}
+        alignItems="center"
+        justifyContent="center"
+        sx={{ marginTop: "20px", textAlign: "center" }}
       >
         <Grid item>
-          <Typography sx={{ color: "black", fontSize: "20px" }}>
+          <Typography sx={{ color: "white", fontSize: "20px" }}>
             Age Preferences
           </Typography>
         </Grid>
         <Grid item>
-          <Button onClick={toggleExpansion} style={{ color: "black" }}>
+          <Button
+            onClick={toggleExpansion}
+            style={{ color: "white", marginLeft: "50px" }}
+          >
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
         </Grid>
       </Grid>
       {isExpanded && (
-        <Box sx={{ width: 416 }}>
+        <Box
+          sx={{
+            width: 416,
+            margin: "auto",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Slider
             getAriaLabel={() => "Age Preferences"}
             value={ageRange}
@@ -55,5 +66,5 @@ const  AgePreferences = () => {
       )}
     </>
   );
-}
+};
 export default AgePreferences;
