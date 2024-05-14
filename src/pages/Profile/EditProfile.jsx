@@ -3,9 +3,11 @@ import { Stack } from "@mui/material";
 import Jobs from "../../components/profilePageItems/Jobs";
 import Hobby from "../../components/profilePageItems/Hobby";
 import Horoscope from "../../components/profilePageItems/Horoscope";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import Profile from "../../components/profileItems/listProfile";
+import Images from "../../components/profilePageItems/Images";
+import InterestsComponent from "../../components/introducingPageItems/Interests";
+import AgePreferences from "../../components/introducingPageItems/AgePreferences";
+import Birthdate from "../../components/profilePageItems/Birthdate";
+
 const EditProfile = () => {
   return (
     <div
@@ -29,30 +31,13 @@ const EditProfile = () => {
       >
         <h1 style={{ color: "white" }}>Date Profile</h1>
       </Stack>
-      <div style={{ margin: "auto", marginTop: "80px", marginBottom: "50px" }}>
-        <ImageList
-          sx={{ width: 400, height: 318, gap: 0 }}
-          cols={3}
-          rowHeight={164}
-        >
-          {Profile.map((item) => (
-            <ImageListItem key={item.img}>
-              <img
-                src={item.img}
-                alt={item.title}
-                style={{
-                  objectFit: "cover",
-                  width: "100%",
-                  height: "100%",
-                }}
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      </div>
+      <Images />
+      <Birthdate />
       <Jobs />
       <Hobby />
       <Horoscope />
+      <AgePreferences />
+      <InterestsComponent />
     </div>
   );
 };
