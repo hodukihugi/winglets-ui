@@ -8,10 +8,8 @@ import Settings from "./pages/Profile/Settings";
 import Contact from "./pages/Profile/ContactAndFAQ";
 import ProfileHeader from "./pages/Profile/ProfileHeader";
 import Home from "./pages/Home";
-import Introduce from "./pages/User/Introduce";
 import ChatScreen from "./components/homeItems/ChatScreen";
 function App() {
-
   // const toasts = useAppSelector(selectToasts);
   // const Toasts = () =>
   //     toasts.map(toast => (
@@ -38,7 +36,6 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/introduce" element={<Introduce />} />
         <Route path="/policy" element={<Policy />} />
       </Routes>
     </Router>
