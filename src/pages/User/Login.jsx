@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/image/logo.png";
 import "./login.css";
 import logoReal from "../../assets/image/LogoReal.svg";
-import "../../assets/font/Roboto-Bold.css";
+import "../../assets/font/Roboto.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ function Login() {
                 fontSize: "24px",
                 marginBottom: "80px",
                 marginTop: "0px",
-                fontFamily: "'Roboto'",
+                fontFamily: "'Roboto-Bold'",
               }}
             >
               Login Page

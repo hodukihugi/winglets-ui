@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/User/Login.jsx";
 import Register from "./pages/User/Register";
 import Policy from "./pages/Policy";
+import QuestionAndAnswer from "./pages/User/Q&APage.jsx";
 import EditProfile from "./pages/Profile/EditProfile";
 import Settings from "./pages/Profile/Settings";
 import Contact from "./pages/Profile/ContactAndFAQ";
@@ -58,6 +59,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/Q&A" element={<QuestionAndAnswer />} />
         <Route path="/policy" element={<Policy />} />
         <Route path="/verification" element={<VerifyEmail />} />
       </Routes>
