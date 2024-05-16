@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack } from "@mui/material";
 import Jobs from "../../components/profilePageItems/Jobs";
-import Hobby from "../../components/profilePageItems/Hobby";
+import Hobby from "../../components/profilePageItems/HomeTown";
 import Horoscope from "../../components/profilePageItems/Horoscope";
 import Images from "../../components/profilePageItems/Images";
 import InterestsComponent from "../../components/introducingPageItems/Interests";
