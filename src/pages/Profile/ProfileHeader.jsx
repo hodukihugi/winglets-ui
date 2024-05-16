@@ -5,6 +5,8 @@ import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import "../../assets/font/stylesheet.css";
 import MyProfile from "../../components/profileItems/myProfile";
+import {useAppDispatch} from "../../redux/hooks";
+import {logout} from "../../redux/slices/auth.slice";
 
 const ProfileHeader = () => {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ const ProfileHeader = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const dispatch = useAppDispatch();
 
   const navigateToHome = async () => {
     setIsTransitioning(true);
@@ -21,6 +24,11 @@ const ProfileHeader = () => {
     setIsTransitioning(false);
     navigate("/");
   };
+
+  const handleLogout = () =>{
+      dispatch(logout());
+      navigate('/login')
+  }
 
   return (
     <div>
@@ -130,7 +138,7 @@ const ProfileHeader = () => {
           />
           <Tab
             label="Log Out"
-            onClick={() => navigate("/login")}
+            onClick={handleLogout}
             sx={{
               marginBottom: "10px",
               fontSize: 20,

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Stack, TextField, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {useSendEmailTokenMutation, useVerifyEmail, useVerifyEmailMutation} from "../../redux/apis/auth.api";
+import {useSendEmailTokenMutation,  useVerifyEmailMutation} from "../../redux/apis/auth.api";
 import {addToast, hideTopLoading, showTopLoading} from "../../redux/slices/common.slice";
 import {useAppSelector} from "../../redux/hooks";
 import {selectEmail} from "../../redux/slices/register.slice";

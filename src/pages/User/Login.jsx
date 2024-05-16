@@ -1,21 +1,26 @@
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { Box,  Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/image/logo.png";
 import "./login.css";
 import logoReal from "../../assets/image/LogoReal.svg";
 import "../../assets/font/Roboto.css";
+import {addToast, hideTopLoading, showTopLoading} from "../../redux/slices/common.slice";
+import {useAppDispatch} from "../../redux/hooks";
+import {useLoginMutation} from "../../redux/apis/auth.api";
+import {setAuth} from "../../redux/slices/auth.slice";
 
 function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [usernameErr, setUsernameErr] = useState("");
+  const [userEmailErr, setUserEmailErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
-
+  const dispatch = useAppDispatch();
+  const [login] = useLoginMutation();
   const onUsernameInputChanged = (e) => {
-    setUsername(e.target.value);
-    setUsernameErr("");
+    setEmail(e.target.value);
+    setUserEmailErr("");
   };
   const onPasswordInputChanged = (e) => {
     setPassword(e.target.value);
@@ -23,8 +28,8 @@ function Login() {
   };
   const validateForm = () => {
     let valid = true;
-    if (username === "") {
-      setUsernameErr("Vui lòng nhập email");
+    if (email === "") {
+      setUserEmailErr("Vui lòng nhập email");
       valid = false;
     }
     if (password === "") {
@@ -35,10 +40,30 @@ function Login() {
   };
   const handleLogin = async () => {
     if (validateForm()) {
-      navigate("/");
-    }
-  };
+      try {
+        dispatch(showTopLoading());
+        const response = await login({email: email, password: password});
 
+        if (response && response.data && response.data.message === "success") {
+          dispatch(addToast({
+            type: 'success',
+            message: "login successfully"
+          }))
+          console.log('---------------')
+          console.log(response);
+          console.log(setAuth);
+          dispatch(setAuth({
+            authToken: response.data.data.access_token,
+          }));
+          navigate("/");
+        }
+
+        dispatch(hideTopLoading());
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
   return (
     <Box
       display="flex"
@@ -86,12 +111,11 @@ function Login() {
               </svg>
 
               <input
-                className={`input ${usernameErr ? "error" : ""}`}
+                className={`input ${userEmailErr ? "error" : ""}`}
                 type="password"
                 placeholder="Email"
-                value={username}
+                value={email}
                 onChange={onUsernameInputChanged}
-                id="password"
               />
             </div>
             <div class="group">
