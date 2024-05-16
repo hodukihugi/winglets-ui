@@ -1,0 +1,130 @@
+.group {
+  display: flex;
+  align-items: center;
+  position: relative;
+  max-width: 800px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.input {
+  width: 100%;
+  height: 45px;
+  line-height: 30px;
+  padding: 0 5rem;
+  padding-left: 3rem;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  outline: none;
+  background-color: #f8fafc;
+  color: #0d0c22;
+  transition: 0.5s ease;
+}
+
+.input::placeholder {
+  color: #94a3b8;
+}
+
+.input:focus,
+.input:hover {
+  outline: none;
+  border-color: rgba(129, 140, 248);
+  background-color: #fff;
+  box-shadow: 0 0 0 5px rgb(129 140 248 / 30%);
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  fill: none;
+  width: 1rem;
+  height: 1rem;
+}
+
+.input.error {
+  border-color: red;
+  box-shadow: 0 0 0 5px rgb(255 0 0 / 30%);
+}
+
+.input.error::placeholder {
+  color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.registerButton {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.registerButton {
+  --primary-color: #111;
+  --hovered-color: #c84747;
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  font-size: 20px;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.registerButton p {
+  margin: 0;
+  position: relative;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.registerButton::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  left: 0;
+  bottom: -7px;
+  background: var(--hovered-color);
+  height: 2px;
+  transition: 0.3s ease-out;
+}
+
+.registerButton p::before {
+  position: absolute;
+  /*   box-sizing: border-box; */
+  content: "Login";
+  width: 0%;
+  inset: 0;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: 0.3s ease-out;
+}
+
+.registerButton:hover::after {
+  width: 100%;
+}
+
+.registerButton:hover p::before {
+  width: 100%;
+}
+
+.registerButton:hover svg {
+  transform: translateX(4px);
+  color: var(--hovered-color);
+}
+
+.registerButton svg {
+  color: var(--primary-color);
+  transition: 0.2s;
+  position: relative;
+  width: 15px;
+  transition-delay: 0.2s;
+}

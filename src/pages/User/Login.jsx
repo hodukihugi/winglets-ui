@@ -1,14 +1,18 @@
-import { Box,  Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/image/logo.png";
 import "./login.css";
 import logoReal from "../../assets/image/LogoReal.svg";
 import "../../assets/font/Roboto.css";
-import {addToast, hideTopLoading, showTopLoading} from "../../redux/slices/common.slice";
-import {useAppDispatch} from "../../redux/hooks";
-import {useLoginMutation} from "../../redux/apis/auth.api";
-import {setAuth} from "../../redux/slices/auth.slice";
+import {
+  addToast,
+  hideTopLoading,
+  showTopLoading,
+} from "../../redux/slices/common.slice";
+import { useAppDispatch } from "../../redux/hooks";
+import { useLoginMutation } from "../../redux/apis/auth.api";
+import { setAuth } from "../../redux/slices/auth.slice";
 
 function Login() {
   const navigate = useNavigate();
@@ -42,19 +46,23 @@ function Login() {
     if (validateForm()) {
       try {
         dispatch(showTopLoading());
-        const response = await login({email: email, password: password});
+        const response = await login({ email: email, password: password });
 
         if (response && response.data && response.data.message === "success") {
-          dispatch(addToast({
-            type: 'success',
-            message: "login successfully"
-          }))
-          console.log('---------------')
+          dispatch(
+            addToast({
+              type: "success",
+              message: "login successfully",
+            })
+          );
+          console.log("---------------");
           console.log(response);
           console.log(setAuth);
-          dispatch(setAuth({
-            authToken: response.data.data.access_token,
-          }));
+          dispatch(
+            setAuth({
+              authToken: response.data.data.access_token,
+            })
+          );
           navigate("/");
         }
 
@@ -63,7 +71,7 @@ function Login() {
         console.log(error);
       }
     }
-  }
+  };
   return (
     <Box
       display="flex"
@@ -111,8 +119,7 @@ function Login() {
               </svg>
 
               <input
-                className={`input ${userEmailErr ? "error" : ""}`}
-
+                className={`input ${usernameErr ? "error" : ""}`}
                 placeholder="Email"
                 value={email}
                 onChange={onUsernameInputChanged}
