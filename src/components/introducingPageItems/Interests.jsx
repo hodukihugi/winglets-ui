@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, Button, Grid } from "@mui/material";
+import { Typography, Button, Grid, Box } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -23,20 +23,24 @@ const InterestsComponent = () => {
   };
 
   return (
-    <>
-      <Grid
-        container
-        spacing={2}
-        justifyContent="flex-start"
-        sx={{ marginTop: "10px" }}
-      >
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: "20px",
+        textAlign: "center",
+      }}
+    >
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item>
-          <Typography sx={{ color: "black", fontSize: "20px" }}>
+          <Typography sx={{ color: "white", fontSize: "20px" }}>
             Interests
           </Typography>
         </Grid>
         <Grid item>
-          <Button onClick={toggleExpansion} style={{ color: "black" }}>
+          <Button onClick={toggleExpansion} style={{ color: "white" }}>
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
         </Grid>
@@ -53,11 +57,27 @@ const InterestsComponent = () => {
           renderOption={(props, option, { selected }) => (
             <li {...props}>{option.title}</li>
           )}
-          style={{ width: 416 }}
+          sx={{
+            width: 416,
+            marginTop: 2,
+            "& .MuiInputBase-root": {
+              color: "white", // Text color
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "white", // Border color
+            },
+            "& .MuiSvgIcon-root": {
+              color: "white", // Dropdown arrow color
+            },
+            "& .MuiAutocomplete-tag": {
+              backgroundColor: "white", // Background color of selected items
+              color: "black", // Text color of selected items
+            },
+          }}
           renderInput={(params) => <TextField {...params} />}
         />
       )}
-    </>
+    </Box>
   );
 };
 

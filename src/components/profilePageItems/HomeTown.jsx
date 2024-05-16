@@ -8,14 +8,14 @@ import {
   Popover,
   Backdrop,
 } from "@mui/material";
-import { Items } from "./Items";
 import AddIcon from "@mui/icons-material/Add";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import { Items } from "./Items";
 
-const Hobby = () => {
-  const [hobbyInput, setHobbyInput] = useState("");
-  const [hobbies, setHobbies] = useState([]);
+const HomeTown = () => {
+  const [homeTownInput, setHomeTownInput] = useState("");
+  const [homeTown, setHomeTown] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -23,34 +23,27 @@ const Hobby = () => {
     setIsExpanded(!isExpanded);
   };
 
-  const onHobbyAddButtonClicked = () => {
-    if (hobbyInput) {
-      const isAdded = hobbies.includes(hobbyInput);
-      if (isAdded) {
-        alert("This hobby has already been added");
-      } else {
-        setHobbies([...hobbies, hobbyInput]);
-        setHobbyInput("");
-        alert("This hobby has been added");
-      }
+  const onHomeTownAddButtonClicked = () => {
+    if (homeTownInput) {
+      setHomeTown(homeTownInput);
+      setHomeTownInput("");
     }
     setAnchorEl(null);
   };
 
-  const onHobbyInputChange = (e) => {
-    setHobbyInput(e.target.value);
+  const onHomeTownInputChange = (e) => {
+    setHomeTownInput(e.target.value);
   };
 
-  const onUpdateHobby = (newValue, index) => {
-    setHobbies(hobbies.map((val, idx) => (idx === index ? newValue : val)));
+  const onUpdateHomeTown = (newValue) => {
+    setHomeTown(newValue);
   };
 
-  const onDeleteHobby = (value) => {
-    const updatedHobbies = hobbies.filter((item) => item !== value);
-    setHobbies(updatedHobbies);
+  const onDeleteHomeTown = () => {
+    setHomeTown("");
   };
 
-  const handleHobbyButtonClicked = (e) => {
+  const handleHomeTownButtonClicked = (e) => {
     setAnchorEl(e.currentTarget);
   };
 
@@ -71,7 +64,7 @@ const Hobby = () => {
       >
         <Grid item>
           <Typography sx={{ color: "white", fontSize: "20px" }}>
-            My Hobbies
+            My Home Town
           </Typography>
         </Grid>
         <Grid item>
@@ -90,39 +83,40 @@ const Hobby = () => {
           spacing={2}
           sx={{ marginTop: "10px", justifyContent: "center" }}
         >
-          {hobbies.map((hobby, index) => (
+          {homeTown && (
             <Items
-              key={index}
-              value={hobby}
-              onDelete={onDeleteHobby}
-              onEdit={(value) => onUpdateHobby(value, index)}
+              value={homeTown}
+              onDelete={onDeleteHomeTown}
+              onEdit={onUpdateHomeTown}
             />
-          ))}
-          <Button
-            startIcon={<AddIcon />}
-            variant="outlined"
-            onClick={handleHobbyButtonClicked}
-            sx={{
-              cursor: "pointer",
-              color: "#fff",
-              fontSize: "17px",
-              borderRadius: "1rem",
-              border: "1px solid #857f74",
-              position: "relative",
-              transition: "0.1s",
-              width: "416px",
-              height: "40px",
-              textTransform: "none",
-              "&:hover": {
-                borderColor: "white",
-              },
-              "&:active": {
-                transform: "scale(0.98)",
-              },
-            }}
-          >
-            Add a hobby
-          </Button>
+          )}
+          {!homeTown && (
+            <Button
+              startIcon={<AddIcon />}
+              variant="outlined"
+              onClick={handleHomeTownButtonClicked}
+              sx={{
+                cursor: "pointer",
+                color: "#fff",
+                fontSize: "17px",
+                borderRadius: "1rem",
+                border: "1px solid #857f74",
+                position: "relative",
+                transition: "0.1s",
+                width: "416px",
+                height: "40px",
+                textTransform: "none",
+                "&:hover": {
+                  borderColor: "white",
+                },
+                "&:active": {
+                  transform: "scale(0.98)",
+                },
+              }}
+            >
+              Add a Home Town
+            </Button>
+          )}
           <Popover
             open={open}
             anchorEl={anchorEl}
@@ -164,31 +158,40 @@ const Hobby = () => {
                 color: "white",
               }}
             >
-              <Typography>Add a hobby</Typography>
+              <Typography>Add a Home Town</Typography>
               <TextField
-                id="hobby"
+                id="homeTown"
                 InputProps={{
                   style: {
                     color: "white",
                     backgroundColor: "#181a1b",
                   },
                 }}
-                onChange={onHobbyInputChange}
+                onChange={onHomeTownInputChange}
+                value={homeTownInput}
                 size="small"
                 sx={{
                   width: "400px",
                   border: "1px solid #857f74",
                   borderRadius: "4px",
-                  "&:hover": {
-                    border: "1px solid #ffd700",
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#857f74",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#ffd700",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#ffd700",
+                    },
                   },
                 }}
               />
               <Button
                 sx={{ textTransform: "none", color: "#ffd700" }}
-                onClick={onHobbyAddButtonClicked}
+                onClick={onHomeTownAddButtonClicked}
               >
-                Save{" "}
+                Save
               </Button>
             </Stack>
           </Popover>
@@ -198,4 +201,4 @@ const Hobby = () => {
   );
 };
 
-export default Hobby;
+export default HomeTown;

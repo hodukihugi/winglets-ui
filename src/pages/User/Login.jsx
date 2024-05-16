@@ -119,7 +119,7 @@ function Login() {
               </svg>
 
               <input
-                className={`input ${usernameErr ? "error" : ""}`}
+                className={`input ${userEmailErr ? "error" : ""}`}
                 placeholder="Email"
                 value={email}
                 onChange={onUsernameInputChanged}

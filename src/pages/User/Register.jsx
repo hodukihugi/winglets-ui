@@ -10,7 +10,7 @@ import {
 import { useRegisterMutation } from "../../redux/apis/auth.api";
 import { setRegister } from "../../redux/slices/register.slice";
 import logoReal from "../../assets/image/LogoReal.svg";
-
+import "./register.css";
 function Register() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
