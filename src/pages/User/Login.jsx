@@ -112,7 +112,7 @@ function Login() {
 
               <input
                 className={`input ${userEmailErr ? "error" : ""}`}
-                type="password"
+
                 placeholder="Email"
                 value={email}
                 onChange={onUsernameInputChanged}

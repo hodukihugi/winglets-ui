@@ -10,9 +10,9 @@ import Settings from "./pages/Profile/Settings";
 import Contact from "./pages/Profile/ContactAndFAQ";
 import Login from "./pages/User/Login";
 import Register from "./pages/User/Register";
-import QuestionAndAnswer from "./pages/User/Q&APage";
 import Policy from "./pages/Policy";
 import VerifyEmail from "./pages/User/EmaillVerification";
+import QuestionAndAnswer from "./pages/User/Q&A";
 
 const AppRouter = () => {
     const authToken = useAppSelector(selectAuthToken);
