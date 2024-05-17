@@ -1,0 +1,191 @@
+.profile-creation-container {
+  background-color: inherit;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-text {
+  color: white;
+}
+
+.input-field {
+  width: 500px;
+  margin-bottom: 20px;
+}
+
+.animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #ef4c72;
+  box-shadow: 0 0 0 2px #ef4c72;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-top: 20px;
+}
+
+.animated-button svg {
+  position: absolute;
+  width: 24px;
+  fill: #ef4c72;
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .arr-1 {
+  right: 16px;
+}
+
+.animated-button .arr-2 {
+  left: -25%;
+}
+
+.animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #ef4c72;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #212121;
+  border-radius: 12px;
+}
+
+.animated-button:hover .arr-1 {
+  right: -25%;
+}
+
+.animated-button:hover .arr-2 {
+  left: 16px;
+}
+
+.animated-button:hover .text {
+  transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+  fill: #212121;
+}
+
+.animated-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px #ef4c72;
+}
+
+.animated-button:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
+}
+.gender-card {
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 30px;
+  border-radius: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 25px;
+}
+.large-svg-container {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+}
+.largemalesvg {
+  transform: rotate(180deg);
+}
+.heading {
+  color: #1d1d1d;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+}
+.gender-radio-buttons {
+  display: none;
+}
+.smallsvg {
+  width: 10px;
+}
+.other-gender {
+  width: 15px;
+}
+.malesmallsvg {
+  transform: rotate(225deg);
+}
+.genderlabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(46, 46, 46);
+  border-radius: 5px;
+  padding: 8px 16px;
+  gap: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.radio-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+}
+.femalebutton:hover {
+  background-color: rgb(245, 185, 195);
+}
+.malebutton:hover {
+  background-color: #569fcf;
+}
+.otherbutton:hover {
+  background-color: #4d227a;
+}
+#female:checked + .femalebutton {
+  background-color: rgb(245, 185, 195);
+  transform: scale(1.1);
+}
+#male:checked + .malebutton {
+  background-color: #569fcf;
+  transform: scale(1.1);
+}
+#other:checked + .otherbutton {
+  background-color: #4d227a;
+  transform: scale(1.2);
+}
