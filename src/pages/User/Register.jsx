@@ -1,4 +1,4 @@
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { Box,  Stack,  Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -68,7 +68,7 @@ function Register() {
           response &&
           response.data &&
           response.data.message ===
-            "signup successfully, check your mail to verify your account"
+            "success"
         ) {
           dispatch(
             addToast({

@@ -1,7 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/image/logo.png";
 import "./login.css";
 import logoReal from "../../assets/image/LogoReal.svg";
 import "../../assets/font/Roboto.css";
@@ -63,6 +62,7 @@ function Login() {
               authToken: response.data.data.access_token,
             })
           );
+
           navigate("/");
         }
 
