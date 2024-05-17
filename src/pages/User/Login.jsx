@@ -103,18 +103,18 @@ function Login() {
             >
               Login Page
             </Typography>
-            <div class="group">
+            <div className="group">
               <svg
                 stroke="currentColor"
-                stroke-width="1"
+                strokeWidth="1"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon"
+                className="icon"
               >
                 <path
                   d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v12h16V6l-8 5-8-5zm8 5L4 6h16l-8 5z"
-                  stroke-linejoin="round"
-                  stroke-linecap="round"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
                 ></path>
               </svg>
 
@@ -125,18 +125,18 @@ function Login() {
                 onChange={onUsernameInputChanged}
               />
             </div>
-            <div class="group">
+            <div className="group">
               <svg
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon"
+                className="icon"
               >
                 <path
                   d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
-                  stroke-linejoin="round"
-                  stroke-linecap="round"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
                 ></path>
               </svg>
               <input
@@ -169,15 +169,15 @@ function Login() {
               <p>Login</p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="4"
+                strokeWidth="4"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M14 5l7 7m0 0l-7 7m7-7H3"
                 ></path>
               </svg>
@@ -191,13 +191,13 @@ function Login() {
         alignItems="center"
         marginLeft="0px"
       >
-        <div class="cssload-main">
-          <div class="cssload-heart">
-            <span class="cssload-heartL"></span>
-            <span class="cssload-heartR"></span>
-            <span class="cssload-square"></span>
+        <div className="cssload-main">
+          <div className="cssload-heart">
+            <span className="cssload-heartL"></span>
+            <span className="cssload-heartR"></span>
+            <span className="cssload-square"></span>
           </div>
-          <div class="cssload-shadow"></div>
+          <div className="cssload-shadow"></div>
         </div>
       </Box>
     </Box>

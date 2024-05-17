@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 
 const valuetext = (value) => `${value} cm`;
 
-const HeightPreferenceSlider = () => {
+const Height = () => {
   const [heightRange, setHeightRange] = useState([200]); // Initial height range
   const [isExpanded, setIsExpanded] = useState(false); // State for expansion toggle
 
@@ -33,7 +33,7 @@ const HeightPreferenceSlider = () => {
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item>
           <Typography sx={{ color: "white", fontSize: "20px" }}>
-            Height Preferences
+            Height
           </Typography>
         </Grid>
         <Grid item>
@@ -44,7 +44,7 @@ const HeightPreferenceSlider = () => {
       </Grid>
       {isExpanded && (
         <Slider
-          getAriaLabel={() => "Height Preferences"}
+          getAriaLabel={() => "Height"}
           value={heightRange}
           onChange={handleChange}
           aria-label="Default"
@@ -59,4 +59,4 @@ const HeightPreferenceSlider = () => {
   );
 };
 
-export default HeightPreferenceSlider;
+export default Height;
