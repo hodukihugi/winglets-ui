@@ -18,12 +18,12 @@ import ProfileCreation from "./pages/User/ProfileCreation";
 const AppRouter = () => {
   const authToken = useAppSelector(selectAuthToken);
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (!authToken) {
-  //     console.log("No auth token found");
-  //     navigate("/Login");
-  //   }
-  // }, [authToken]);
+  useEffect(() => {
+    if (!authToken) {
+      console.log("No auth token found");
+      navigate("/Login");
+    }
+  }, [authToken]);
 
   return (
     <Routes>
