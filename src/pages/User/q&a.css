@@ -41,7 +41,8 @@
 }
 
 .questioncard.selected {
-  background-color: #e0e0e0;
+  background-color: #ffe4f6;
+  border-color: #f04393;
 }
 
 .questioncard-details {
@@ -80,11 +81,13 @@
   font-size: 12pt;
   font-weight: bold;
   margin-bottom: 5px;
+  color: #f04393;
 }
 
 .questioncard:hover {
-  border-color: #008bf8;
-  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+  border-color: #f04393;
+  box-shadow: 0 4px 18px 0 rgba(216, 60, 132, 0.5);
+  background-color: #ffeef9;
 }
 
 .questioncard:hover .questioncard-button {
@@ -100,20 +103,23 @@
 
 .question-and-answer {
   text-align: center;
-  border: 1px solid #ccc;
+  border: 1px solid #f04393;
   border-radius: 20px;
+  color: #f04393;
 }
 .sub-question {
-  border: 1px solid #ccc;
+  border: 1px solid #f04393;
   margin-top: 20px;
   text-align: center;
   border-radius: 20px;
+  color: #f04393;
 }
 .importance-question {
-  border: 1px solid #ccc;
+  border: 1px solid #f04393;
   margin-top: 20px;
   text-align: center;
   border-radius: 20px;
+  color: #f04393;
 }
 .question-and-answer h2 {
   font-size: 18px;
@@ -259,58 +265,33 @@ body {
   justify-content: center;
 }
 
-.heart {
-  position: absolute;
-  font-size: 24px;
-  color: #ff69b4;
-  width: 0;
-  height: 0;
-  background: transparent;
-  transition: width 0.5s, height 0.5s;
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
-}
-
 .progress-bar.filled {
-  background-color: #ff69b4;
+  background-color: #e73788;
 }
 
-.heart.filled {
-  width: 100px;
-  height: 100px;
-  background: #ff69b4;
-}
 .next-button {
+  bottom: 145px;
+  left: 82%;
   display: flex;
-  margin-left: 87%;
-  width: 150px;
-  height: 70px;
+  width: 160px;
+  height: 80px;
+  margin-left: 100px;
   justify-content: space-around;
   align-items: center;
   padding: 1em 0em 1em 1em;
-  background-color: yellow;
+  background-color: #fab779;
   cursor: pointer;
-  box-shadow: 4px 6px 0px black;
+  box-shadow: 4px 6px 0px white;
   border: 4px solid;
   border-radius: 15px;
-  position: relative;
+  position: fixed;
   overflow: hidden;
   z-index: 100;
   transition: box-shadow 250ms, transform 250ms, filter 50ms;
 }
 .next-button:hover {
   transform: translate(2px, 2px);
-  box-shadow: 2px 3px 0px black;
+  box-shadow: 2px 3px 0px white;
 }
 .next-button:active {
   filter: saturate(0.75);
@@ -319,7 +300,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: pink;
+  background-color: #e73688;
   z-index: -1;
   transform: translateX(-100%);
   transition: transform 250ms;
@@ -350,7 +331,7 @@ body {
   margin-inline-end: 1em;
   border: 4px solid;
   border-radius: 50%;
-  background-color: pink;
+  background-color: #e73688;
   position: relative;
   overflow: hidden;
   transition: transform 250ms, background-color 250ms;
@@ -361,7 +342,7 @@ body {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-color: yellow;
+  background-color: #fab779;
   transform: translateX(-100%);
   z-index: -1;
   transition: transform 250ms ease-in-out;
@@ -392,10 +373,11 @@ body {
   width: 320px;
   padding: 12px;
   display: flex;
+  margin-left: 220px;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  border-radius: 50px;
+  border-radius: 20px;
   background: -webkit-linear-gradient(to right, #f45c43, #eb3349);
   background: linear-gradient(to right, #f45c43, #eb3349);
   box-shadow: 0 0px 10px #de1c3280;
@@ -435,12 +417,13 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   width: 320px;
   padding: 12px;
+  margin-left: 220px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   background: #84d65a;
-  border-radius: 8px;
+  border-radius: 20px;
   box-shadow: 0px 0px 5px -3px #111;
 }
 
@@ -476,6 +459,8 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  width: 250px;
+  height: 80px;
 }
 
 .slider {
@@ -519,4 +504,9 @@ body {
     transform: translateY(250px);
     filter: hue-rotate(180deg);
   }
+}
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
