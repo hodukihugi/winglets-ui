@@ -93,7 +93,7 @@ const Horoscope = () => {
               : "Select Horoscope"}
           </Button>
           <Menu
-            horoscopeAnchorEL={horoscopeAnchorEL}
+            anchorEl={horoscopeAnchorEL}
             open={Boolean(horoscopeAnchorEL)}
             onClose={handleClose}
           >

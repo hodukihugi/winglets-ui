@@ -544,7 +544,7 @@ const ProfileCreation = () => {
           {selectHoro ? `Star sign: ${selectHoro}` : "Select Horoscope"}
         </Button>
         <Menu
-          horoscopeAnchorEL={horoscopeAnchorEL}
+          anchorEl={horoscopeAnchorEL}
           open={Boolean(horoscopeAnchorEL)}
           onClose={handleHoroscopeClose}
         >
