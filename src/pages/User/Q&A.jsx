@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import "./q&a.css";
 import "../../assets/font/Roboto.css";
@@ -6,11 +6,12 @@ import { BookHeart, NotebookPen, Home } from "lucide-react";
 import Error from "./Error";
 import Success from "./Success";
 import logoReal from "../../assets/image/LogoReal.svg";
+
 function QuestionAndAnswer() {
   const [selectedQuestion, setSelectedQuestion] = useState(0);
-  const [answers, setAnswers] = useState(Array(5).fill(null));
-  const [desiredAnswers, setDesiredAnswers] = useState(Array(5).fill(null));
-  const [importance, setImportance] = useState(Array(5).fill(null));
+  const [answers, setAnswers] = useState({});
+  const [desiredAnswers, setDesiredAnswers] = useState({});
+  const [importance, setImportance] = useState({});
   const [progress, setProgress] = useState(0);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [error, setError] = useState(null);
@@ -20,43 +21,70 @@ function QuestionAndAnswer() {
 
   const navigate = useNavigate();
 
-  const questions = [
-    {
-      question: "Bạn thích làm gì trong thời gian rảnh?",
-      options: ["Đọc sách", "Xem phim", "Tập thể dục", "Du lịch"],
-    },
-    {
-      question: "Môn thể thao yêu thích của bạn là gì?",
-      options: ["Bóng đá", "Bóng rổ", "Bơi lội", "Cầu lông"],
-    },
-    {
-      question: "Bạn thích loại phim nào nhất?",
-      options: ["Hành động", "Lãng mạn", "Kinh dị", "Hài hước"],
-    },
-    {
-      question: "Bạn thích nghe loại nhạc nào?",
-      options: ["Pop", "Rock", "Jazz", "Cổ điển"],
-    },
-    {
-      question: "Bạn thích ăn món ăn nào nhất?",
-      options: ["Món Á", "Món Âu", "Món chay", "Món nhanh (fast food)"],
-    },
-  ];
+  const questions = useMemo(
+    () => [
+      {
+        id: "1",
+        question: "Bạn thích làm gì trong thời gian rảnh?",
+        options: [
+          { id: "1", text: "Đọc sách" },
+          { id: "2", text: "Xem phim" },
+          { id: "3", text: "Tập thể dục" },
+          { id: "4", text: "Du lịch" },
+        ],
+      },
+      {
+        id: "2",
+        question: "Môn thể thao yêu thích của bạn là gì?",
+        options: [
+          { id: "1", text: "Bóng đá" },
+          { id: "2", text: "Bóng rổ" },
+          { id: "3", text: "Bơi lội" },
+          { id: "4", text: "Cầu lông" },
+        ],
+      },
+      {
+        id: "3",
+        question: "Bạn thích loại phim nào nhất?",
+        options: [
+          { id: "1", text: "Hành động" },
+          { id: "2", text: "Lãng mạn" },
+          { id: "3", text: "Kinh dị" },
+          { id: "4", text: "Hài hước" },
+        ],
+      },
+      {
+        id: "4",
+        question: "Bạn thích nghe loại nhạc nào?",
+        options: [
+          { id: "1", text: "Pop" },
+          { id: "2", text: "Rock" },
+          { id: "3", text: "Jazz" },
+          { id: "4", text: "Cổ điển" },
+        ],
+      },
+      {
+        id: "5",
+        question: "Bạn thích ăn món ăn nào nhất?",
+        options: [
+          { id: "1", text: "Món Á" },
+          { id: "2", text: "Món Âu" },
+          { id: "3", text: "Món chay" },
+          { id: "4", text: "Món nhanh (fast food)" },
+        ],
+      },
+    ],
+    []
+  );
 
   useEffect(() => {
-    const answeredQuestions = answers.filter(
-      (answer) => answer !== null
-    ).length;
+    const answeredQuestions = Object.keys(answers).length;
     setProgress((answeredQuestions / questions.length) * 100);
   }, [answers, questions.length]);
 
   const handleCardClick = (index) => {
     if (index <= currentCardIndex) {
-      if (
-        answers[currentCardIndex] === null ||
-        desiredAnswers[currentCardIndex] === null ||
-        importance[currentCardIndex] === null
-      ) {
+      if (!answers[index] || !desiredAnswers[index] || !importance[index]) {
         setError(
           "Vui lòng trả lời hết tất cả các câu hỏi phần này trước khi tiếp tục hoặc quay lại."
         );
@@ -67,23 +95,17 @@ function QuestionAndAnswer() {
     }
   };
 
-  const handleOptionClick = (questionIndex, option, answerType) => {
+  const handleOptionClick = (questionId, optionId, answerType) => {
     setError(null);
     if (answerType === "self") {
-      const newAnswers = [...answers];
-      newAnswers[questionIndex] = option;
-      setAnswers(newAnswers);
+      setAnswers({ ...answers, [questionId]: optionId });
     } else {
-      const newDesiredAnswers = [...desiredAnswers];
-      newDesiredAnswers[questionIndex] = option;
-      setDesiredAnswers(newDesiredAnswers);
+      setDesiredAnswers({ ...desiredAnswers, [questionId]: optionId });
     }
   };
 
-  const handleImportanceChange = (questionIndex, value) => {
-    const newImportance = [...importance];
-    newImportance[questionIndex] = value;
-    setImportance(newImportance);
+  const handleImportanceChange = (questionId, value) => {
+    setImportance({ ...importance, [questionId]: value });
   };
 
   const handleNextButtonClick = () => {
@@ -91,18 +113,16 @@ function QuestionAndAnswer() {
       navigate("/");
     } else {
       if (
-        answers[currentCardIndex] === null ||
-        desiredAnswers[currentCardIndex] === null ||
-        importance[currentCardIndex] === null
+        !answers[currentCardIndex] ||
+        !desiredAnswers[currentCardIndex] ||
+        !importance[currentCardIndex]
       ) {
         setError(
           "Vui lòng trả lời hết tất cả các câu hỏi phần này trước khi tiếp tục hoặc quay lại."
         );
       } else {
-        if (importance[currentCardIndex] === null) {
-          const newDesiredAnswers = [...desiredAnswers];
-          newDesiredAnswers[currentCardIndex] = null;
-          setDesiredAnswers(newDesiredAnswers);
+        if (!importance[currentCardIndex]) {
+          setDesiredAnswers({ ...desiredAnswers, [currentCardIndex]: null });
           setError(
             "Vui lòng chọn độ quan trọng của câu hỏi phụ trước khi tiếp tục."
           );
@@ -111,14 +131,13 @@ function QuestionAndAnswer() {
 
         if (currentCardIndex < questions.length - 1) {
           setCurrentCardIndex(currentCardIndex + 1);
-          setSelectedQuestion(currentCardIndex + 1);
           setAnsweredCount(answeredCount + 1);
           setError(null);
         } else {
           const allAnswered =
-            answers.every((answer) => answer !== null) &&
-            desiredAnswers.every((answer) => answer !== null) &&
-            importance.every((answer) => answer !== null);
+            Object.keys(answers).length === questions.length &&
+            Object.keys(desiredAnswers).length === questions.length &&
+            Object.keys(importance).length === questions.length;
           if (allAnswered) {
             setIsCompleted(true);
             setNavigateHome(true);
@@ -139,12 +158,28 @@ function QuestionAndAnswer() {
   const handleCloseSuccess = () => {
     setIsCompleted(false);
   };
+
   useEffect(() => {
     console.log("Các câu trả lời của người dùng:");
-    console.log("Câu trả lời của người dùng:", answers);
+
+    Object.entries(answers).forEach(([questionId, optionId]) => {
+      const question = questions.find((q) => q.id === questionId);
+      if (question) {
+        const selectedOption = question.options.find(
+          (option) => option.id === optionId
+        );
+        if (selectedOption) {
+          console.log(
+            `Câu hỏi: ${question.question}, Câu trả lời: ${selectedOption.id}`
+          );
+        }
+      }
+    });
+
     console.log("Câu trả lời mong muốn của người dùng:", desiredAnswers);
     console.log("Độ quan trọng của câu hỏi đối với người dùng:", importance);
-  }, [answers, desiredAnswers, importance]);
+  }, [answers, desiredAnswers, importance, questions]);
+
   return (
     <div className="container">
       <div className="left-pane">
@@ -187,17 +222,23 @@ function QuestionAndAnswer() {
             <div className="question-and-answer">
               <h2>{questions[selectedQuestion].question}</h2>
               <div className="options-grid">
-                {questions[selectedQuestion].options.map((option, index) => (
+                {questions[selectedQuestion].options.map((option) => (
                   <button
-                    key={index}
+                    key={option.id}
                     className={`option-button ${
-                      answers[selectedQuestion] === option ? "selected" : ""
+                      answers[questions[selectedQuestion].id] === option.id
+                        ? "selected"
+                        : ""
                     }`}
                     onClick={() =>
-                      handleOptionClick(selectedQuestion, option, "self")
+                      handleOptionClick(
+                        questions[selectedQuestion].id,
+                        option.id,
+                        "self"
+                      )
                     }
                   >
-                    {option}
+                    {option.text}
                   </button>
                 ))}
               </div>
@@ -205,19 +246,24 @@ function QuestionAndAnswer() {
             <div className="sub-question">
               <h3>Bạn mong muốn đối phương trả lời như nào?</h3>
               <div className="options-grid">
-                {questions[selectedQuestion].options.map((option, index) => (
+                {questions[selectedQuestion].options.map((option) => (
                   <button
-                    key={index}
+                    key={option.id}
                     className={`option-button ${
-                      desiredAnswers[selectedQuestion] === option
+                      desiredAnswers[questions[selectedQuestion].id] ===
+                      option.id
                         ? "selected"
                         : ""
                     }`}
                     onClick={() =>
-                      handleOptionClick(selectedQuestion, option, "desired")
+                      handleOptionClick(
+                        questions[selectedQuestion].id,
+                        option.id,
+                        "desired"
+                      )
                     }
                   >
-                    {option}
+                    {option.text}
                   </button>
                 ))}
               </div>
@@ -234,9 +280,14 @@ function QuestionAndAnswer() {
                     name={`value-radio-${selectedQuestion}`}
                     value={`value-${value}`}
                     onChange={() =>
-                      handleImportanceChange(selectedQuestion, value)
+                      handleImportanceChange(
+                        questions[selectedQuestion].id,
+                        value
+                      )
                     }
-                    checked={importance[selectedQuestion] === value}
+                    checked={
+                      importance[questions[selectedQuestion].id] === value
+                    }
                   />
                 ))}
               </div>
