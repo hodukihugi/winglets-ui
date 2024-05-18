@@ -4,7 +4,7 @@ import Jobs from "../../components/profilePageItems/Jobs";
 import Hobby from "../../components/profilePageItems/HomeTown";
 import Horoscope from "../../components/profilePageItems/Horoscope";
 import Images from "../../components/profilePageItems/Images";
-import InterestsComponent from "../../components/introducingPageItems/Interests";
+import HobbyComponent from "../../components/introducingPageItems/Hobby";
 import AgePreferences from "../../components/introducingPageItems/AgePreferences";
 import Birthdate from "../../components/profilePageItems/Birthdate";
 
@@ -37,7 +37,7 @@ const EditProfile = () => {
       <Hobby />
       <Horoscope />
       <AgePreferences />
-      <InterestsComponent />
+      <HobbyComponent />
     </div>
   );
 };

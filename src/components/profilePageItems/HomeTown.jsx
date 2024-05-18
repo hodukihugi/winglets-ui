@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+  import React, { useState } from "react";
 import {
   Button,
   Grid,
@@ -12,6 +12,8 @@ import AddIcon from "@mui/icons-material/Add";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { Items } from "./Items";
+  import {useAppDispatch} from "../../redux/hooks";
+  import {setHometown} from "../../redux/slices/profile.slice";
 
 const HomeTown = () => {
   const [homeTownInput, setHomeTownInput] = useState("");
@@ -52,6 +54,10 @@ const HomeTown = () => {
   };
 
   const open = Boolean(anchorEl);
+  const dispatch = useAppDispatch();
+  dispatch(setHometown({
+    homeTown: homeTownInput,
+  }))
 
   return (
     <>

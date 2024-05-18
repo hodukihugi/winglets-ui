@@ -2,6 +2,7 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE} from "redux-persist";
 import authReducer from "./slices/auth.slice";
 import registerReducer from "./slices/register.slice";
+import profileReducer from "./slices/profile.slice";
 import commonReducer from "./slices/common.slice";
 import {authApi} from "./apis/auth.api";
 import storage from 'redux-persist/lib/storage';
@@ -16,12 +17,14 @@ const loggerMiddleware = store => next => action => {
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth','profile'],
+
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
   register: registerReducer,
+  profile: profileReducer,
   common: commonReducer,
   [authApi.reducerPath]: authApi.reducer,
   [profileApi.reducerPath]: profileApi.reducer,

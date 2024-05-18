@@ -13,7 +13,7 @@ import Register from "./pages/User/Register";
 import Policy from "./pages/Policy";
 import VerifyEmail from "./pages/User/EmaillVerification";
 import QuestionAndAnswer from "./pages/User/Q&A";
-import ProfileCreation from "./pages/User/ProfileCreation";
+import ProfileCreation from "./pages/Profile/ProfileCreation";
 
 const AppRouter = () => {
   const authToken = useAppSelector(selectAuthToken);
@@ -39,6 +39,7 @@ const AppRouter = () => {
       <Route path="/Q&A" element={<QuestionAndAnswer />} />
       <Route path="/policy" element={<Policy />} />
       <Route path="/verification" element={<VerifyEmail />} />
+      <Route path="/createProfile" element={<ProfileCreation />} />
     </Routes>
   );
 };

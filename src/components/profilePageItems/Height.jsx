@@ -1,20 +1,24 @@
 import React, { useState } from "react";
-import { Typography, Button, Grid, Box } from "@mui/material";
+import {Typography, Button, Grid, Box, TextField} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Slider from "@mui/material/Slider";
-import TextField from "@mui/material/TextField";
+import {useAppDispatch} from "../../redux/hooks";
+import {setHeight} from "../../redux/slices/profile.slice";
 
 const valuetext = (value) => `${value} cm`;
 
 const Height = () => {
-  const [heightRange, setHeightRange] = useState([200]); // Initial height range
+  const [height, setHeight] = useState(); // Initial height range
   const [isExpanded, setIsExpanded] = useState(false); // State for expansion toggle
 
-  const handleChange = (event, newValue) => {
-    setHeightRange(newValue);
+  const handleChange = (e) => {
+    setHeight(e.target.value);
   };
-
+  // const dispatch = useAppDispatch()
+  // dispatch(setHeight({
+  //     height: height,
+  // }))
   const toggleExpansion = () => {
     setIsExpanded(!isExpanded);
   };
@@ -43,17 +47,14 @@ const Height = () => {
         </Grid>
       </Grid>
       {isExpanded && (
-        <Slider
-          getAriaLabel={() => "Height"}
-          value={heightRange}
-          onChange={handleChange}
-          aria-label="Default"
-          valueLabelDisplay="auto"
-          getAriaValueText={valuetext}
-          defaultValue={50}
-          max={250}
-          sx={{ width: 416, marginTop: 2, color: "white" }}
-        />
+          <TextField
+              id="outlined-basic"
+              label="Height(cm)"
+              variant="outlined"
+              onChange={handleChange}
+              value={height}
+              className="input-field"
+          />
       )}
     </Box>
   );
