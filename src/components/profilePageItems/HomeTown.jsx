@@ -1,4 +1,4 @@
-  import React, { useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Grid,
@@ -12,13 +12,13 @@ import AddIcon from "@mui/icons-material/Add";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { Items } from "./Items";
-  import {useAppDispatch} from "../../redux/hooks";
-  import {setHometown} from "../../redux/slices/profile.slice";
+import { useAppDispatch } from "../../redux/hooks";
+import { setHometown } from "../../redux/slices/profile.slice";
 
 const HomeTown = () => {
   const [homeTownInput, setHomeTownInput] = useState("");
   const [homeTown, setHomeTown] = useState("");
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [homeTownAnchorEl, setHomeTownAnchorEl] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpansion = () => {
@@ -30,7 +30,7 @@ const HomeTown = () => {
       setHomeTown(homeTownInput);
       setHomeTownInput("");
     }
-    setAnchorEl(null);
+    setHomeTownAnchorEl(null);
   };
 
   const onHomeTownInputChange = (e) => {
@@ -46,18 +46,20 @@ const HomeTown = () => {
   };
 
   const handleHomeTownButtonClicked = (e) => {
-    setAnchorEl(e.currentTarget);
+    setHomeTownAnchorEl(e.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleHomeTownClose = () => {
+    setHomeTownAnchorEl(null);
   };
 
-  const open = Boolean(anchorEl);
+  const homeTownOpen = Boolean(homeTownAnchorEl);
   const dispatch = useAppDispatch();
-  dispatch(setHometown({
-    homeTown: homeTownInput,
-  }))
+  dispatch(
+    setHometown({
+      homeTown: homeTownInput,
+    })
+  );
 
   return (
     <>
@@ -124,9 +126,9 @@ const HomeTown = () => {
             </Button>
           )}
           <Popover
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
+            open={homeTownOpen}
+            homeTownAnchorEl={homeTownAnchorEl}
+            onClose={handleHomeTownClose}
             anchorOrigin={{
               vertical: "center",
               horizontal: "center",

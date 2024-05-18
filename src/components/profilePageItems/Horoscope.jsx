@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Button, Grid, Typography, Menu, MenuItem } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import {useAppDispatch} from "../../redux/hooks";
-import {setHoroscope} from "../../redux/slices/profile.slice";
+import { useAppDispatch } from "../../redux/hooks";
+import { setHoroscope } from "../../redux/slices/profile.slice";
 
 const Horoscope = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [horoscopeAnchorEL, setHoroscopeAnchorEL] = useState(null);
   const [selectedHoroscope, setSelectedHoroscope] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -22,11 +22,11 @@ const Horoscope = () => {
   }, []);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    setHoroscopeAnchorEL(event.currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setHoroscopeAnchorEL(null);
   };
 
   const handleHoroscopeSelect = (horoscope) => {
@@ -35,9 +35,11 @@ const Horoscope = () => {
     handleClose();
   };
   const dispatch = useAppDispatch();
-  dispatch(setHoroscope({
-    horoscope: selectedHoroscope,
-  }))
+  dispatch(
+    setHoroscope({
+      horoscope: selectedHoroscope,
+    })
+  );
 
   return (
     <>
@@ -91,8 +93,8 @@ const Horoscope = () => {
               : "Select Horoscope"}
           </Button>
           <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
+            horoscopeAnchorEL={horoscopeAnchorEL}
+            open={Boolean(horoscopeAnchorEL)}
             onClose={handleClose}
           >
             {[
