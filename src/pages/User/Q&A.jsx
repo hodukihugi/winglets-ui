@@ -5,7 +5,7 @@ import "../../assets/font/Roboto.css";
 import { BookHeart, NotebookPen, Home } from "lucide-react";
 import Error from "./Error";
 import Success from "./Success";
-
+import logoReal from "../../assets/image/LogoReal.svg";
 function QuestionAndAnswer() {
   const [selectedQuestion, setSelectedQuestion] = useState(0);
   const [answers, setAnswers] = useState(Array(5).fill(null));
@@ -139,7 +139,12 @@ function QuestionAndAnswer() {
   const handleCloseSuccess = () => {
     setIsCompleted(false);
   };
-
+  useEffect(() => {
+    console.log("Các câu trả lời của người dùng:");
+    console.log("Câu trả lời của người dùng:", answers);
+    console.log("Câu trả lời mong muốn của người dùng:", desiredAnswers);
+    console.log("Độ quan trọng của câu hỏi đối với người dùng:", importance);
+  }, [answers, desiredAnswers, importance]);
   return (
     <div className="container">
       <div className="left-pane">
@@ -149,9 +154,13 @@ function QuestionAndAnswer() {
               size={36}
               color="#fe93db"
               strokeWidth={1.5}
-              style={{ marginLeft: 25 }}
+              style={{ marginLeft: 37 }}
             />
-            <h1>Khảo sát</h1>
+            <img
+              src={logoReal}
+              alt="Logo"
+              style={{ width: "100px", height: "80px", marginLeft: 10 }}
+            />
           </div>
           {questions.map((q, index) => (
             <div
@@ -216,7 +225,7 @@ function QuestionAndAnswer() {
             <div className="importance-question">
               <h3>Độ quan trọng của câu hỏi đối với bạn?</h3>
               <div className="radio-input">
-                {[1, 2, 3, 4, 5].map((value) => (
+                {[5, 4, 3, 2, 1].map((value) => (
                   <input
                     key={value}
                     className={`star s${value}`}
@@ -240,41 +249,42 @@ function QuestionAndAnswer() {
                 <div className={`heart ${progress > 0 ? "filled" : ""}`}></div>
               </div>
             </div>
+            <div className="content-wrapper">
+              <section className="loader">
+                <div className="slider" style={{ "--i": 0 }}></div>
+                <div className="slider" style={{ "--i": 1 }}></div>
+                <div className="slider" style={{ "--i": 2 }}></div>
+                <div className="slider" style={{ "--i": 3 }}></div>
+                <div className="slider" style={{ "--i": 4 }}></div>
+              </section>
 
-            <section className="loader">
-              <div className="slider" style={{ "--i": 0 }}></div>
-              <div className="slider" style={{ "--i": 1 }}></div>
-              <div className="slider" style={{ "--i": 2 }}></div>
-              <div className="slider" style={{ "--i": 3 }}></div>
-              <div className="slider" style={{ "--i": 4 }}></div>
-            </section>
-
-            {error && <Error errorTitle={error} onClose={handleCloseError} />}
-            {isCompleted && (
-              <Success
-                message="Chúc mừng bạn đã hoàn thành khảo sát!"
-                onClose={handleCloseSuccess}
-              />
-            )}
-            <button className="next-button" onClick={handleNextButtonClick}>
-              <div className="bgContainer">
-                <span>{navigateHome ? <Home /> : "Tiếp theo"}</span>
-              </div>
-              <div className="arrowContainer">
-                <svg
-                  width="25"
-                  height="25"
-                  viewBox="0 0 45 38"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5L42 21.5V16.5L0 16.5L0 21.5Z"
-                    fill="black"
-                  ></path>
-                </svg>
-              </div>
-            </button>
+              {error && <Error errorTitle={error} onClose={handleCloseError} />}
+              {isCompleted && (
+                <Success
+                  message="Chúc mừng bạn đã hoàn thành khảo sát!"
+                  onClose={handleCloseSuccess}
+                />
+              )}
+              <button className="next-button" onClick={handleNextButtonClick}>
+                <div className="bgContainer">
+                  <span>{navigateHome ? <Home /> : "Tiếp theo"}</span>
+                </div>
+                <div className="arrowContainer">
+                  <svg
+                    width="25"
+                    height="25"
+                    viewBox="0 0 45 38"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M43.7678 20.7678C44.7441 19.7915 44.7441 18.2085 43.7678 17.2322L27.8579 1.32233C26.8816 0.34602 25.2986 0.34602 24.3223 1.32233C23.346 2.29864 23.346 3.88155 24.3223 4.85786L38.4645 19L24.3223 33.1421C23.346 34.1184 23.346 35.7014 24.3223 36.6777C25.2986 37.654 26.8816 37.654 27.8579 36.6777L43.7678 20.7678ZM0 21.5L42 21.5V16.5L0 16.5L0 21.5Z"
+                      fill="black"
+                    ></path>
+                  </svg>
+                </div>
+              </button>
+            </div>
           </div>
         )}
       </div>
