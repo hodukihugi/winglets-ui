@@ -39,7 +39,6 @@ const AppRouter = () => {
       <Route path="/Q&A" element={<QuestionAndAnswer />} />
       <Route path="/policy" element={<Policy />} />
       <Route path="/verification" element={<VerifyEmail />} />
-      <Route path="/createProfile" element={<ProfileCreation />} />
     </Routes>
   );
 };
