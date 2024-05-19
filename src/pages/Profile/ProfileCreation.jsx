@@ -20,7 +20,7 @@ import dayjs from "dayjs";
 import InterestingItems from "../../components/introducingPageItems/InterestingItems";
 import { Items } from "../../components/profilePageItems/Items";
 import AddIcon from "@mui/icons-material/Add";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 
 import { useCreateProfileMutation } from "../../redux/apis/profile.api";
 import { addToast, showTopLoading } from "../../redux/slices/common.slice";
@@ -182,6 +182,7 @@ const ProfileCreation = () => {
   const handleSave = async () => {
     try {
       dispatch(showTopLoading());
+      const { latitude, longitude } = await getCoordinates();
       const response = await createProfile({
         name: inputName,
         gender: inputGender,
@@ -200,10 +201,11 @@ const ProfileCreation = () => {
         dispatch(
           addToast({
             type: "success",
-            message: "email verifying",
+            message: "create successfully,please login again",
           })
         );
-        navigate("/");
+        dispatch(logout());
+        navigate("/login");
       }
     } catch (error) {
       console.log(error);

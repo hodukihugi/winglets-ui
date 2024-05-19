@@ -12,9 +12,13 @@ import {useNavigate} from "react-router-dom";
 const Home = () => {
   const [matchedProfile, setMatchedProfile] = useState([]);
   const token = useAppSelector(selectAuthToken);
+
   const {data,isLoading} =useGetProfileQuery(token);
+
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
     useEffect(() => {
         if(isLoading) {
             dispatch(showTopLoading());
@@ -28,7 +32,6 @@ const Home = () => {
     }, [isLoading]);
     console.log(token);
     console.log(data);
-
 
   return (
     <div>
