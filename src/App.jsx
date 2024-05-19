@@ -10,6 +10,7 @@ import {
 } from "./redux/slices/common.slice";
 import TopLoading from "./components/TopLoading";
 import AppRouter from "./AppRouter";
+import RegisterRouter from "./RegisterRouter";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -43,6 +44,7 @@ function App() {
     <>
       <Stack className="App">
         <Router>
+          <RegisterRouter />
           <AppRouter />
         </Router>
       </Stack>

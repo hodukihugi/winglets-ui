@@ -32,7 +32,6 @@ const ProfileCreation = () => {
   const [birthdate, setBirthdate] = useState(null);
   const [birthdateUnix, setBirthdateUnix] = useState(null);
   const dispatch = useAppDispatch();
-  const token = useAppSelector(selectAuthToken);
   const [createProfile] = useCreateProfileMutation();
 
   const tmpHeight = '182';
