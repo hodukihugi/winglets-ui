@@ -12,7 +12,7 @@ import {useNavigate} from "react-router-dom";
 const Home = () => {
   const [matchedProfile, setMatchedProfile] = useState([]);
   const token = useAppSelector(selectAuthToken);
-  const {data,isLoading} = useGetProfileQuery(token);
+  const {data,isLoading} =useGetProfileQuery(token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
     useEffect(() => {

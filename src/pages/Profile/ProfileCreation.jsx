@@ -10,16 +10,16 @@ import dayjs from "dayjs";
 import InterestingItems from "../../components/introducingPageItems/InterestingItems";
 import {Items} from "../../components/profilePageItems/Items";
 import AddIcon from "@mui/icons-material/Add";
-import {useAppDispatch, useAppSelector} from "../../redux/hooks";
-import {selectAuthToken} from "../../redux/slices/auth.slice";
+import {useAppDispatch} from "../../redux/hooks";
 import {useCreateProfileMutation} from "../../redux/apis/profile.api";
-import {addToast, showTopLoading} from "../../redux/slices/common.slice";
+import {addToast, hideTopLoading, showTopLoading} from "../../redux/slices/common.slice";
+import {logout} from "../../redux/slices/auth.slice";
 
 const ProfileCreation = () => {
   const navigate = useNavigate();
   const [inputName, setInputName] = useState("");
   const [inputGender, setInputGender] = useState("");
-  const [height, setHeight] = useState();
+  const [height, setHeight] = useState('');
   const [jobInput, setJobInput] = useState("");
   const [jobs, setJobs] = useState([]);
   const [jobAnchorEl, setJobAnchorEl] = useState(null);
@@ -34,7 +34,6 @@ const ProfileCreation = () => {
   const dispatch = useAppDispatch();
   const [createProfile] = useCreateProfileMutation();
 
-  const tmpHeight = '182';
 
   // Horoscope
   const handleHoroscopeClick = (event) => {
@@ -153,16 +152,42 @@ const ProfileCreation = () => {
 
   const homeTownOpen = Boolean(homeTownAnchorEl);
   //
-
+  const getCoordinates = () => {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              resolve({ latitude, longitude });
+            },
+            (error) => {
+              reject(error);
+            }
+        );
+      } else {
+        reject(new Error('Geolocation is not supported by this browser.'));
+      }
+    });
+  };
   const handleSave = async () => {
-    console.log(inputName,inputGender,birthdateUnix);
+    console.log(inputName,inputGender,birthdateUnix,selectHoro,jobs,selectedOptions,homeTown);
+
+    const { latitude, longitude } = await getCoordinates();
     try{
       dispatch(showTopLoading());
       const response = await createProfile({
         name: inputName,
         gender: inputGender,
         birthday_in_seconds: birthdateUnix,
-        height: tmpHeight,
+        height: height,
+        horoscope: selectHoro,
+        //education: jobs,
+        //hobby: selectedOptions,
+        home_town: homeTown,
+        coordinates: {
+          longitude: longitude,
+          latitude: latitude,
+        }
       })
       console.log(response);
       if (
@@ -174,15 +199,16 @@ const ProfileCreation = () => {
         dispatch(
             addToast({
               type: "success",
-              message: "email verifying",
+              message: "Create profile succesfully, please login again",
             })
         );
-        navigate('/');
+        dispatch(logout())
+        navigate('/Login');
       }
     } catch(error){
       console.log(error);
     }
-
+    dispatch(hideTopLoading());
   };
 
   return (
