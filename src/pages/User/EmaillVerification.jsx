@@ -100,9 +100,9 @@ const VerifyEmail = () => {
         <p className="otpSubheading">
           We have sent a verification code to your email
         </p>
-        <div className="inputContainer">
+        <div className="email-inputContainer">
           <input
-            className="input"
+            className="email-input"
             placeholder="Enter verification code"
             value={token}
             onChange={(e) => setToken(e.target.value)}
