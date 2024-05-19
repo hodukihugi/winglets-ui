@@ -84,68 +84,66 @@ function QuestionAndAnswer() {
 
   const handleCardClick = (index) => {
     if (index <= currentCardIndex) {
-      if (!answers[index] || !desiredAnswers[index] || !importance[index]) {
-        setError(
-          "Vui lòng trả lời hết tất cả các câu hỏi phần này trước khi tiếp tục hoặc quay lại."
-        );
-      } else {
-        setSelectedQuestion(index);
-        setError(null);
-      }
+      setSelectedQuestion(index);
+      setError(null);
+    } else {
+      setError(
+        "Vui lòng trả lời hết tất cả các câu hỏi phần này trước khi tiếp tục hoặc quay lại."
+      );
     }
   };
 
   const handleOptionClick = (questionId, optionId, answerType) => {
     setError(null);
     if (answerType === "self") {
-      setAnswers({ ...answers, [questionId]: optionId });
+      setAnswers((prev) => ({ ...prev, [questionId]: optionId }));
     } else {
-      setDesiredAnswers({ ...desiredAnswers, [questionId]: optionId });
+      setDesiredAnswers((prev) => ({ ...prev, [questionId]: optionId }));
     }
   };
 
   const handleImportanceChange = (questionId, value) => {
-    setImportance({ ...importance, [questionId]: value });
+    setImportance((prev) => ({ ...prev, [questionId]: value }));
   };
 
   const handleNextButtonClick = () => {
+    const currentQuestionId = questions[currentCardIndex].id;
+
     if (navigateHome) {
       navigate("/");
     } else {
       if (
-        !answers[currentCardIndex] ||
-        !desiredAnswers[currentCardIndex] ||
-        !importance[currentCardIndex]
+        !answers[currentQuestionId] ||
+        !desiredAnswers[currentQuestionId] ||
+        !importance[currentQuestionId]
       ) {
         setError(
           "Vui lòng trả lời hết tất cả các câu hỏi phần này trước khi tiếp tục hoặc quay lại."
         );
-      } else {
-        if (!importance[currentCardIndex]) {
-          setDesiredAnswers({ ...desiredAnswers, [currentCardIndex]: null });
-          setError(
-            "Vui lòng chọn độ quan trọng của câu hỏi phụ trước khi tiếp tục."
-          );
-          return;
-        }
+        return;
+      }
 
-        if (currentCardIndex < questions.length - 1) {
-          setCurrentCardIndex(currentCardIndex + 1);
-          setAnsweredCount(answeredCount + 1);
-          setError(null);
+      setError(null);
+
+      if (currentCardIndex < questions.length - 1) {
+        setCurrentCardIndex(currentCardIndex + 1);
+        setSelectedQuestion(currentCardIndex + 1);
+        setAnsweredCount(answeredCount + 1);
+      } else {
+        const allAnswered = questions.every(
+          (question) =>
+            answers[question.id] &&
+            desiredAnswers[question.id] &&
+            importance[question.id]
+        );
+
+        if (allAnswered) {
+          setIsCompleted(true);
+          setNavigateHome(true);
         } else {
-          const allAnswered =
-            Object.keys(answers).length === questions.length &&
-            Object.keys(desiredAnswers).length === questions.length &&
-            Object.keys(importance).length === questions.length;
-          if (allAnswered) {
-            setIsCompleted(true);
-            setNavigateHome(true);
-          } else {
-            setError(
-              "Vui lòng trả lời hết tất cả các câu hỏi trước khi hoàn thành."
-            );
-          }
+          setError(
+            "Vui lòng trả lời hết tất cả các câu hỏi trước khi hoàn thành."
+          );
         }
       }
     }
