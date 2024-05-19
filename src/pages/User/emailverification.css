@@ -35,7 +35,7 @@
   text-align: center;
 }
 
-.inputContainer {
+.email-inputContainer {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -44,7 +44,7 @@
   justify-content: center;
 }
 
-.input {
+.email-input {
   border: 2px solid transparent;
   width: 15em;
   height: 2.5em;
@@ -56,15 +56,15 @@
   transition: all 0.5s;
 }
 
-.input:hover,
-.input:focus {
+.email-input:hover,
+.email-input:focus {
   border-color: #f04393;
   box-shadow: 0 4px 18px 0 rgba(216, 60, 132, 0.5);
   background-color: white;
 }
 
 .verifyButton {
-  width: 100%;
+  width: 75%;
   height: 30px;
   border: none;
   background-color: #f04393;
@@ -115,7 +115,7 @@
     padding: 20px;
   }
 
-  .input {
+  .email-input {
     width: 25px;
     height: 25px;
   }
