@@ -1,25 +1,36 @@
-import React, {useState} from "react";
-import {Autocomplete, Backdrop, Button, Menu, MenuItem, Popover, Stack, TextField, Typography,} from "@mui/material";
+import React, { useState } from "react";
+import {
+  Autocomplete,
+  Backdrop,
+  Button,
+  Menu,
+  MenuItem,
+  Popover,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 import "./ProfileCreation.css";
-import {useNavigate} from "react-router-dom";
-import {DatePicker} from "@mui/x-date-pickers";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+import { useNavigate } from "react-router-dom";
+import { DatePicker } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
 import InterestingItems from "../../components/introducingPageItems/InterestingItems";
-import {Items} from "../../components/profilePageItems/Items";
+import { Items } from "../../components/profilePageItems/Items";
 import AddIcon from "@mui/icons-material/Add";
-import {useAppDispatch} from "../../redux/hooks";
-import {useCreateProfileMutation} from "../../redux/apis/profile.api";
-import {addToast, hideTopLoading, showTopLoading} from "../../redux/slices/common.slice";
-import {logout} from "../../redux/slices/auth.slice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+
+import { useCreateProfileMutation } from "../../redux/apis/profile.api";
+import { addToast, showTopLoading } from "../../redux/slices/common.slice";
+import { logout } from "../../redux/slices/auth.slice";
 
 const ProfileCreation = () => {
   const navigate = useNavigate();
   const [inputName, setInputName] = useState("");
   const [inputGender, setInputGender] = useState("");
-  const [height, setHeight] = useState('');
+  const [height, setHeight] = useState("");
   const [jobInput, setJobInput] = useState("");
   const [jobs, setJobs] = useState([]);
   const [jobAnchorEl, setJobAnchorEl] = useState(null);
@@ -33,7 +44,6 @@ const ProfileCreation = () => {
   const [birthdateUnix, setBirthdateUnix] = useState(null);
   const dispatch = useAppDispatch();
   const [createProfile] = useCreateProfileMutation();
-
 
   // Horoscope
   const handleHoroscopeClick = (event) => {
@@ -156,24 +166,21 @@ const ProfileCreation = () => {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const { latitude, longitude } = position.coords;
-              resolve({ latitude, longitude });
-            },
-            (error) => {
-              reject(error);
-            }
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            resolve({ latitude, longitude });
+          },
+          (error) => {
+            reject(error);
+          }
         );
       } else {
-        reject(new Error('Geolocation is not supported by this browser.'));
+        reject(new Error("Geolocation is not supported by this browser."));
       }
     });
   };
   const handleSave = async () => {
-    console.log(inputName,inputGender,birthdateUnix,selectHoro,jobs,selectedOptions,homeTown);
-
-    const { latitude, longitude } = await getCoordinates();
-    try{
+    try {
       dispatch(showTopLoading());
       const response = await createProfile({
         name: inputName,
@@ -187,28 +194,20 @@ const ProfileCreation = () => {
         coordinates: {
           longitude: longitude,
           latitude: latitude,
-        }
-      })
-      console.log(response);
-      if (
-          response &&
-          response.data &&
-          response.data.message ===
-          "success"
-      ) {
+        },
+      });
+      if (response && response.data && response.data.message === "success") {
         dispatch(
-            addToast({
-              type: "success",
-              message: "Create profile succesfully, please login again",
-            })
+          addToast({
+            type: "success",
+            message: "email verifying",
+          })
         );
-        dispatch(logout())
-        navigate('/Login');
+        navigate("/");
       }
-    } catch(error){
+    } catch (error) {
       console.log(error);
     }
-    dispatch(hideTopLoading());
   };
 
   return (
@@ -646,7 +645,7 @@ const ProfileCreation = () => {
         )}
         <Popover
           open={homeTownOpen}
-          homeTownAnchorEl={homeTownAnchorEl}
+          anchorEl={homeTownAnchorEl}
           onClose={handleHomeTownClose}
           anchorOrigin={{
             vertical: "center",
