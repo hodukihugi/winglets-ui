@@ -11,7 +11,7 @@ import {
   showTopLoading,
 } from "../../redux/slices/common.slice";
 import { useAppSelector } from "../../redux/hooks";
-import { selectEmail } from "../../redux/slices/register.slice";
+import {selectEmail, setRegister} from "../../redux/slices/register.slice";
 import "./emailverification.css";
 
 const VerifyEmail = () => {
@@ -21,7 +21,7 @@ const VerifyEmail = () => {
   const [token, setToken] = useState("");
   const [resend] = useSendEmailTokenMutation();
   const [verify] = useVerifyEmailMutation();
-
+  console.log(email);
   const handleVerifyButton = async () => {
     try {
       dispatch(showTopLoading());
@@ -32,7 +32,7 @@ const VerifyEmail = () => {
       if (
         response &&
         response.data &&
-        response.data.message === "verify email success"
+        response.data.message === "success"
       ) {
         dispatch(
           addToast({
@@ -40,12 +40,15 @@ const VerifyEmail = () => {
             message: "verify successfully",
           })
         );
+        dispatch(setRegister({
+          email: null,
+            }
+        ))
         navigate("/login");
       }
       dispatch(hideTopLoading());
     } catch (error) {
       console.log(error);
-      dispatch(hideTopLoading());
     }
   };
 

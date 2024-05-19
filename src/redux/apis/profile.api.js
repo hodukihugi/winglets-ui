@@ -20,6 +20,7 @@ export const profileApi = createApi({
         createProfile: builder.mutation({
             query: (req) => {
                 const token = localStorage.getItem('authToken');
+                console.log(token);
                 return {
                     url: '/api/profile',
                     method: 'POST',

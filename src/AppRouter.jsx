@@ -1,6 +1,6 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
-import { useAppSelector } from "./redux/hooks";
+import {useAppDispatch, useAppSelector} from "./redux/hooks";
 import { selectAuthToken } from "./redux/slices/auth.slice";
 import Home from "./pages/Home";
 import ChatScreen from "./components/homeItems/ChatScreen";
@@ -9,19 +9,22 @@ import EditProfile from "./pages/Profile/EditProfile";
 import Settings from "./pages/Profile/Settings";
 import Contact from "./pages/Profile/ContactAndFAQ";
 import Login from "./pages/User/Login";
-import Register from "./pages/User/Register";
 import Policy from "./pages/Policy";
-import VerifyEmail from "./pages/User/EmaillVerification";
 import QuestionAndAnswer from "./pages/User/Q&A";
 import ProfileCreation from "./pages/Profile/ProfileCreation";
+import {hideTopLoading} from "./redux/slices/common.slice";
+import Register from "./pages/User/Register";
+import VerifyEmail from "./pages/User/EmaillVerification";
 
 const AppRouter = () => {
   const authToken = useAppSelector(selectAuthToken);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     if (!authToken) {
       console.log("No auth token found");
       navigate("/Login");
+      dispatch(hideTopLoading());
     }
   }, [authToken]);
 
@@ -36,9 +39,9 @@ const AppRouter = () => {
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/verification" element={<VerifyEmail />} />
       <Route path="/Q&A" element={<QuestionAndAnswer />} />
       <Route path="/policy" element={<Policy />} />
-      <Route path="/verification" element={<VerifyEmail />} />
       <Route path="/createProfile" element={<ProfileCreation />} />
     </Routes>
   );
