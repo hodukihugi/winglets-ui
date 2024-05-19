@@ -1,41 +1,19 @@
-import React, { useState } from "react";
-import {
-  TextField,
-  Typography,
-  Stack,
-  Button,
-  Autocomplete,
-  Popover,
-  Menu,
-  MenuItem,
-  Backdrop,
-} from "@mui/material";
-import HomeTown from "../../components/profilePageItems/HomeTown";
+import React, {useState} from "react";
+import {Autocomplete, Backdrop, Button, Menu, MenuItem, Popover, Stack, TextField, Typography,} from "@mui/material";
 
 import "./ProfileCreation.css";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import {
-  selectBirthdate,
-  selectCoordinates,
-  selectEducation,
-  selectGender,
-  selectHeight,
-  selectHometown,
-  selectHoroscope,
-  selectLanguage,
-  selectName,
-  setGender,
-  setName,
-} from "../../redux/slices/profile.slice";
-import { DatePicker } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import {useNavigate} from "react-router-dom";
+import {DatePicker} from "@mui/x-date-pickers";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
-import { selectEmail } from "../../redux/slices/register.slice";
 import InterestingItems from "../../components/introducingPageItems/InterestingItems";
-import { Items } from "../../components/profilePageItems/Items";
+import {Items} from "../../components/profilePageItems/Items";
 import AddIcon from "@mui/icons-material/Add";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks";
+import {selectAuthToken} from "../../redux/slices/auth.slice";
+import {useCreateProfileMutation} from "../../redux/apis/profile.api";
+import {addToast, showTopLoading} from "../../redux/slices/common.slice";
 
 const ProfileCreation = () => {
   const navigate = useNavigate();
@@ -52,6 +30,12 @@ const ProfileCreation = () => {
   const [homeTown, setHomeTown] = useState("");
   const [homeTownAnchorEl, setHomeTownAnchorEl] = useState(null);
   const [birthdate, setBirthdate] = useState(null);
+  const [birthdateUnix, setBirthdateUnix] = useState(null);
+  const dispatch = useAppDispatch();
+  const token = useAppSelector(selectAuthToken);
+  const [createProfile] = useCreateProfileMutation();
+
+  const tmpHeight = '182';
 
   // Horoscope
   const handleHoroscopeClick = (event) => {
@@ -82,7 +66,6 @@ const ProfileCreation = () => {
     setInputGender(event.target.value);
   };
   //name
-  const dispatch = useAppDispatch();
   const handleNameInput = (e) => {
     setInputName(e.target.value);
   };
@@ -90,19 +73,19 @@ const ProfileCreation = () => {
   const handleHeightChange = (e) => {
     setHeight(e.target.value);
   };
-  // const dispatch = useAppDispatch()
-  // dispatch(setHeight({
-  //     height: height,
-  // }))
-  //date of birth
   const handleBirthdateChange = (date) => {
     setBirthdate(date);
+    const unixTime = convertToUnixTime(date);
+    setBirthdateUnix(unixTime);
+  };
+  const convertToUnixTime = (date) => {
+    if (!date) return null;
+    return dayjs(date).unix();
   };
   const calculateAge = (birthdate) => {
     if (!birthdate) return null;
     const today = dayjs();
-    const age = today.diff(birthdate, "year");
-    return age;
+    return today.diff(birthdate, "year");
   };
   //
   //job
@@ -172,40 +155,35 @@ const ProfileCreation = () => {
   const homeTownOpen = Boolean(homeTownAnchorEl);
   //
 
-  dispatch(
-    setName({
-      name: inputName,
-    })
-  );
-  dispatch(
-    setGender({
-      gender: inputGender,
-    })
-  );
-  const selectedName = useAppSelector(selectName);
-  const selectedGender = useAppSelector(selectGender);
-  const selectedBirthdate = useAppSelector(selectBirthdate);
-  const selectedHeight = useAppSelector(selectHeight);
-  const selectedHoroscope = useAppSelector(selectHoroscope);
-  const selectedHobby = useAppSelector(selectEmail);
-  const selectedLanguage = useAppSelector(selectLanguage);
-  const selectedEducation = useAppSelector(selectEducation);
-  const selectedHometown = useAppSelector(selectHometown);
-  const selectedCoordinates = useAppSelector(selectCoordinates);
+  const handleSave = async () => {
+    console.log(inputName,inputGender,birthdateUnix);
+    try{
+      dispatch(showTopLoading());
+      const response = await createProfile({
+        name: inputName,
+        gender: inputGender,
+        birthday_in_seconds: birthdateUnix,
+        height: tmpHeight,
+      })
+      console.log(response);
+      if (
+          response &&
+          response.data &&
+          response.data.message ===
+          "success"
+      ) {
+        dispatch(
+            addToast({
+              type: "success",
+              message: "email verifying",
+            })
+        );
+        navigate('/');
+      }
+    } catch(error){
+      console.log(error);
+    }
 
-  const handleSave = () => {
-    console.log(selectedName);
-    console.log(selectedGender);
-    console.log(selectedBirthdate);
-    console.log(selectedHeight);
-    console.log(selectedHoroscope);
-    console.log(selectedLanguage);
-    console.log(selectedHobby);
-    console.log(selectedLanguage);
-    console.log(selectedEducation);
-    console.log(selectedHometown);
-    console.log(selectedCoordinates);
-    //navigate('/');
   };
 
   return (

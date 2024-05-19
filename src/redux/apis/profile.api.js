@@ -18,12 +18,18 @@ export const profileApi = createApi({
     tagTypes:['profile'],
     endpoints: (builder) => ({
         createProfile: builder.mutation({
-            query: (req) => ({
-                url: '/api/profile',
-                method: 'POST',
-                body: req,
-            }),
-            invalidatesTags:['profile']
+            query: (req) => {
+                const token = localStorage.getItem('authToken');
+                return {
+                    url: '/api/profile',
+                    method: 'POST',
+                    body: req,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                };
+            },
+            invalidatesTags: ['profile'],
         }),
 
         updateProfile: builder.mutation({
