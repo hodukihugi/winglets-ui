@@ -30,18 +30,17 @@ const Header = ({ matchedProfile, matchedPeople }) => {
           display: "flex",
           alignItems: "center",
           height: "80px",
-          backgroundColor: "#181a1b", // Màu nền ban đầu
+          backgroundColor: "#white", // Màu nền ban đầu
           transition: "box-shadow 0.3s ease", // Thêm transition cho box-shadow
           boxShadow: "0 0 0 0 rgba(0,0,0,0.3)", // Hiệu ứng box-shadow ban đầu
           borderRadius: "8px", // Bo tròn các góc của khối
           marginTop: "5px",
         }}
         onMouseEnter={(e) =>
-          (e.currentTarget.style.boxShadow =
-            "0 0 20px 5px rgba(255, 255, 255, 0.7)")
+          (e.currentTarget.style.backgroundColor = "rgb(255, 244, 251)")
         } // Hiệu ứng khi di chuột vào
         onMouseLeave={(e) =>
-          (e.currentTarget.style.boxShadow = "0 0 0 0 rgba(0,0,0,0.3)")
+          (e.currentTarget.style.backgroundColor = "rgb(255, 255, 255)")
         } // Hiệu ứng khi di chuột ra
         onClick={() => navigateToChatScreen(item)}
       >
@@ -59,7 +58,7 @@ const Header = ({ matchedProfile, matchedPeople }) => {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h1
             style={{
-              color: "white",
+              color: "black",
               margin: 0,
               marginBottom: "5px",
               fontSize: "25px",
@@ -87,7 +86,7 @@ const Header = ({ matchedProfile, matchedPeople }) => {
           display: "flex",
           alignItems: "center",
           height: "80px",
-          backgroundColor: "#181a1b", // Màu nền ban đầu
+          backgroundColor: "#ffffff", // Màu nền ban đầu
           transition: "box-shadow 0.3s ease", // Thêm transition cho box-shadow
           boxShadow: "0 0 0 0 rgba(0,0,0,0.3)", // Hiệu ứng box-shadow ban đầu
           borderRadius: "8px", // Bo tròn các góc của khối
@@ -115,7 +114,7 @@ const Header = ({ matchedProfile, matchedPeople }) => {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h1
             style={{
-              color: "white",
+              color: "black",
               margin: 0,
               marginBottom: "5px",
               fontSize: "25px",
@@ -133,11 +132,11 @@ const Header = ({ matchedProfile, matchedPeople }) => {
       sx={{
         borderRight: "1px solid #857f74",
         position: "fixed",
-        top: 0,
+        marginTop: "10px",
         left: 0,
         width: "400px",
         height: "100%",
-        backgroundColor: "#181a1b",
+        backgroundColor: "#white",
         zIndex: 1,
         padding: "10px",
       }}
@@ -163,7 +162,7 @@ const Header = ({ matchedProfile, matchedPeople }) => {
         />
 
         {!isTransitioning && (
-          <span style={{ color: "white", fontSize: "20px" }}>
+          <span style={{ color: "black", fontSize: "20px" }}>
             {myProfile.name}
           </span>
         )}
@@ -202,17 +201,17 @@ const Header = ({ matchedProfile, matchedPeople }) => {
           borderTop: "1px solid #857f74",
         }}
       >
-        <span style={{ color: "white" }}>Match Queue</span>
+        <span style={{ color: "black" }}>Match Queue</span>
         <Button
           onClick={toggleExpansion}
-          style={{ color: "white", marginTop: "5px" }}
+          style={{ color: "black", marginTop: "5px" }}
         >
           {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </Button>
       </Stack>
       {isExpanded &&
         matchedProfile.map((item, index) => matchingPeople(item, index))}
-      <span style={{ color: "white", marginTop: "20px", marginBottom: "5px" }}>
+      <span style={{ color: "black", marginTop: "20px", marginBottom: "5px" }}>
         Conversations
       </span>
       {matchedPeople.map((item, index) => matchedItem(item, index))}
