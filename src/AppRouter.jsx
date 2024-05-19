@@ -1,6 +1,6 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
-import {useAppDispatch, useAppSelector} from "./redux/hooks";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { selectAuthToken } from "./redux/slices/auth.slice";
 import Home from "./pages/Home";
 import ChatScreen from "./components/homeItems/ChatScreen";
@@ -12,19 +12,17 @@ import Login from "./pages/User/Login";
 import Policy from "./pages/Policy";
 import QuestionAndAnswer from "./pages/User/Q&A";
 import ProfileCreation from "./pages/Profile/ProfileCreation";
-import {hideTopLoading} from "./redux/slices/common.slice";
+import { hideTopLoading } from "./redux/slices/common.slice";
 import Register from "./pages/User/Register";
 import VerifyEmail from "./pages/User/EmaillVerification";
 
 const AppRouter = () => {
   const authToken = useAppSelector(selectAuthToken);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   useEffect(() => {
     if (!authToken) {
       console.log("No auth token found");
       navigate("/Login");
-      dispatch(hideTopLoading());
     }
   }, [authToken]);
 
