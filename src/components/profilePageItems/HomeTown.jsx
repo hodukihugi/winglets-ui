@@ -55,11 +55,7 @@ const HomeTown = () => {
 
   const homeTownOpen = Boolean(homeTownAnchorEl);
   const dispatch = useAppDispatch();
-  dispatch(
-    setHometown({
-      homeTown: homeTownInput,
-    })
-  );
+  dispatch(setHometown({ homeTown: homeTownInput }));
 
   return (
     <>
@@ -68,17 +64,21 @@ const HomeTown = () => {
         spacing={2}
         alignItems="center"
         justifyContent="center"
-        sx={{ marginTop: "20px", textAlign: "center" }}
+        sx={{
+          marginTop: "20px",
+          textAlign: "center",
+          backgroundColor: "white",
+        }}
       >
         <Grid item>
-          <Typography sx={{ color: "white", fontSize: "20px" }}>
+          <Typography sx={{ color: "black", fontSize: "20px" }}>
             My Home Town
           </Typography>
         </Grid>
         <Grid item>
           <Button
             onClick={toggleExpansion}
-            style={{ color: "white", marginLeft: "50px" }}
+            style={{ color: "black", marginLeft: "50px" }}
           >
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
@@ -89,7 +89,11 @@ const HomeTown = () => {
           direction="column"
           alignItems="center"
           spacing={2}
-          sx={{ marginTop: "10px", justifyContent: "center" }}
+          sx={{
+            marginTop: "10px",
+            justifyContent: "center",
+            backgroundColor: "white",
+          }}
         >
           {homeTown && (
             <Items
@@ -105,21 +109,17 @@ const HomeTown = () => {
               onClick={handleHomeTownButtonClicked}
               sx={{
                 cursor: "pointer",
-                color: "#fff",
+                color: "black",
                 fontSize: "17px",
                 borderRadius: "1rem",
-                border: "1px solid #857f74",
+                border: "1px solid black",
                 position: "relative",
                 transition: "0.1s",
                 width: "416px",
                 height: "40px",
                 textTransform: "none",
-                "&:hover": {
-                  borderColor: "white",
-                },
-                "&:active": {
-                  transform: "scale(0.98)",
-                },
+                "&:hover": { borderColor: "black" },
+                "&:active": { transform: "scale(0.98)" },
               }}
             >
               Add a Home Town
@@ -127,33 +127,23 @@ const HomeTown = () => {
           )}
           <Popover
             open={homeTownOpen}
-            homeTownAnchorEl={homeTownAnchorEl}
+            anchorEl={homeTownAnchorEl}
             onClose={handleHomeTownClose}
-            anchorOrigin={{
-              vertical: "center",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: "center",
-              horizontal: "center",
-            }}
+            anchorOrigin={{ vertical: "center", horizontal: "center" }}
+            transformOrigin={{ vertical: "center", horizontal: "center" }}
             PaperProps={{
               sx: {
                 width: "480px",
                 height: "156px",
                 backdropFilter: "blur(5px)",
                 position: "absolute",
-                backgroundColor: "#181a1b",
-                color: "white",
+                backgroundColor: "white",
+                color: "black",
                 boxShadow: "0px 2px 4px rgba(0,0,0,0.10)",
               },
             }}
             BackdropComponent={Backdrop}
-            BackdropProps={{
-              sx: {
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-              },
-            }}
+            BackdropProps={{ sx: { backgroundColor: "rgba(0, 0, 0, 0.5)" } }}
           >
             <Stack
               direction="column"
@@ -162,29 +152,26 @@ const HomeTown = () => {
               sx={{
                 marginTop: "10px",
                 justifyContent: "center",
-                backgroundColor: "#181a1b",
-                color: "white",
+                backgroundColor: "white",
+                color: "black",
               }}
             >
               <Typography>Add a Home Town</Typography>
               <TextField
                 id="homeTown"
                 InputProps={{
-                  style: {
-                    color: "white",
-                    backgroundColor: "#181a1b",
-                  },
+                  style: { color: "black", backgroundColor: "white" },
                 }}
                 onChange={onHomeTownInputChange}
                 value={homeTownInput}
                 size="small"
                 sx={{
                   width: "400px",
-                  border: "1px solid #857f74",
+                  border: "1px solid black",
                   borderRadius: "4px",
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
-                      borderColor: "#857f74",
+                      borderColor: "black",
                     },
                     "&:hover fieldset": {
                       borderColor: "#ffd700",

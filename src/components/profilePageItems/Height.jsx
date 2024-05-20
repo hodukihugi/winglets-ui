@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import {Typography, Button, Grid, Box, TextField} from "@mui/material";
+import { Typography, Button, Grid, Box, TextField } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Slider from "@mui/material/Slider";
-import {useAppDispatch} from "../../redux/hooks";
-import {setHeight} from "../../redux/slices/profile.slice";
+import { useAppDispatch } from "../../redux/hooks";
+import { setHeight } from "../../redux/slices/profile.slice";
 
 const valuetext = (value) => `${value} cm`;
 
@@ -32,29 +32,30 @@ const Height = () => {
         justifyContent: "center",
         marginTop: "20px",
         textAlign: "center",
+        backgroundColor: "white",
       }}
     >
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item>
-          <Typography sx={{ color: "white", fontSize: "20px" }}>
+          <Typography sx={{ color: "black", fontSize: "20px" }}>
             Height
           </Typography>
         </Grid>
         <Grid item>
-          <Button onClick={toggleExpansion} style={{ color: "white" }}>
+          <Button onClick={toggleExpansion} style={{ color: "black" }}>
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
         </Grid>
       </Grid>
       {isExpanded && (
-          <TextField
-              id="outlined-basic"
-              label="Height(cm)"
-              variant="outlined"
-              onChange={handleChange}
-              value={height}
-              className="input-field"
-          />
+        <TextField
+          id="outlined-basic"
+          label="Height(cm)"
+          variant="outlined"
+          onChange={handleChange}
+          value={height}
+          className="input-field"
+        />
       )}
     </Box>
   );

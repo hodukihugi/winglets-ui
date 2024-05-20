@@ -7,10 +7,10 @@ const Settings = () => {
   return (
     <div
       style={{
-        marginLeft: "400px",
-        backgroundColor: "inherit",
+        marginLeft: "25%",
+        backgroundColor: "white",
         height: "100vh",
-        width: "calc(100% - 400px)",
+        width: "75%",
         display: "flex",
         flexDirection: "column",
       }}
@@ -24,7 +24,7 @@ const Settings = () => {
           justifyContent: "center",
         }}
       >
-        <h1 style={{ color: "white" }}> {t("setting")} </h1>
+        <h1 style={{ color: "black" }}> {t("setting")} </h1>
       </Stack>
       <Language />
     </div>

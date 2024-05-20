@@ -396,20 +396,20 @@ const ProfileCreation = () => {
         spacing={2}
         sx={{ marginTop: "10px", justifyContent: "center" }}
       >
-        <h1 style={{ fontSize: "20px", textAlign: "left", color: "white" }}>
+        <h1 style={{ fontSize: "20px", textAlign: "left", color: "black" }}>
           Date of birth
         </h1>
         <LocalizationProvider
           dateAdapter={AdapterDayjs}
-          sx={{ color: "white" }}
+          sx={{ color: "black" }}
         >
           <DatePicker
             value={birthdate}
             onChange={handleBirthdateChange}
-            sx={{ color: "white", maxWidth: "507px" }}
+            sx={{ color: "black", maxWidth: "507px" }}
           />
         </LocalizationProvider>
-        <h1 style={{ fontSize: "20px", textAlign: "left", color: "white" }}>
+        <h1 style={{ fontSize: "20px", textAlign: "left", color: "black" }}>
           Age: {calculateAge(birthdate)}
         </h1>
       </Stack>
@@ -433,7 +433,7 @@ const ProfileCreation = () => {
           onClick={handleJobButtonClicked}
           sx={{
             cursor: "pointer",
-            color: "#fff",
+            color: "black",
             fontSize: "17px",
             borderRadius: "1rem",
             border: "1px solid #857f74",
@@ -443,7 +443,7 @@ const ProfileCreation = () => {
             height: "40px",
             textTransform: "none",
             "&:hover": {
-              borderColor: "white",
+              borderColor: "black",
             },
             "&:active": {
               transform: "scale(0.98)",
@@ -470,8 +470,8 @@ const ProfileCreation = () => {
               height: "156px",
               backdropFilter: "blur(5px)",
               position: "absolute",
-              backgroundColor: "#181a1b",
-              color: "white",
+              backgroundColor: "white",
+              color: "black",
               boxShadow: "0px 2px 4px rgba(0,0,0,0.10)",
             },
           }}
@@ -489,8 +489,8 @@ const ProfileCreation = () => {
             sx={{
               marginTop: "10px",
               justifyContent: "center",
-              backgroundColor: "#181a1b",
-              color: "white",
+              backgroundColor: "white",
+              color: "black",
             }}
           >
             <Typography>Add a job</Typography>
@@ -498,8 +498,8 @@ const ProfileCreation = () => {
               id="job"
               InputProps={{
                 style: {
-                  color: "white",
-                  backgroundColor: "#181a1b",
+                  color: "black",
+                  backgroundColor: "white",
                 },
               }}
               onChange={onJobInputChange}
@@ -522,13 +522,13 @@ const ProfileCreation = () => {
           </Stack>
         </Popover>
       </Stack>
-      <div style={{ color: "white", textAlign: "center" }}>
+      <div style={{ color: "black", textAlign: "center" }}>
         <Button
           onClick={handleHoroscopeClick}
           variant="outlined"
           sx={{
             cursor: "pointer",
-            color: "#fff",
+            color: "black",
             fontSize: "17px",
             borderRadius: "1rem",
             border: "1px solid #857f74",
@@ -538,7 +538,7 @@ const ProfileCreation = () => {
             height: "40px",
             textTransform: "none",
             "&:hover": {
-              borderColor: "white",
+              borderColor: "black",
             },
             "&:active": {
               transform: "scale(0.98)",
@@ -590,16 +590,16 @@ const ProfileCreation = () => {
           width: 416,
           marginTop: 2,
           "& .MuiInputBase-root": {
-            color: "white", // Text color
+            color: "black", // Text color
           },
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "white", // Border color
+            borderColor: "black", // Border color
           },
           "& .MuiSvgIcon-root": {
-            color: "white", // Dropdown arrow color
+            color: "black", // Dropdown arrow color
           },
           "& .MuiAutocomplete-tag": {
-            backgroundColor: "white", // Background color of selected items
+            backgroundColor: "black", // Background color of selected items
             color: "black", // Text color of selected items
           },
         }}
@@ -625,7 +625,7 @@ const ProfileCreation = () => {
             onClick={handleHomeTownButtonClicked}
             sx={{
               cursor: "pointer",
-              color: "#fff",
+              color: "black",
               fontSize: "17px",
               borderRadius: "1rem",
               border: "1px solid #857f74",
@@ -635,7 +635,7 @@ const ProfileCreation = () => {
               height: "40px",
               textTransform: "none",
               "&:hover": {
-                borderColor: "white",
+                borderColor: "black",
               },
               "&:active": {
                 transform: "scale(0.98)",
@@ -663,8 +663,8 @@ const ProfileCreation = () => {
               height: "156px",
               backdropFilter: "blur(5px)",
               position: "absolute",
-              backgroundColor: "#181a1b",
-              color: "white",
+              backgroundColor: "white",
+              color: "black",
               boxShadow: "0px 2px 4px rgba(0,0,0,0.10)",
             },
           }}
@@ -682,8 +682,8 @@ const ProfileCreation = () => {
             sx={{
               marginTop: "10px",
               justifyContent: "center",
-              backgroundColor: "#181a1b",
-              color: "white",
+              backgroundColor: "white",
+              color: "black",
             }}
           >
             <Typography>Add a Home Town</Typography>
@@ -691,8 +691,8 @@ const ProfileCreation = () => {
               id="homeTown"
               InputProps={{
                 style: {
-                  color: "white",
-                  backgroundColor: "#181a1b",
+                  color: "black",
+                  backgroundColor: "white",
                 },
               }}
               onChange={onHomeTownInputChange}

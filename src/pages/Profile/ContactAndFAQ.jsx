@@ -19,10 +19,12 @@ const Contact = () => {
   return (
     <div
       style={{
-        marginLeft: "400px",
-        backgroundColor: "inherit",
+        marginLeft: "25%",
+        backgroundColor: "white",
         height: "100vh",
-        width: "calc(100% - 400px)",
+        width: "75%",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <Stack
@@ -34,7 +36,7 @@ const Contact = () => {
           justifyContent: "center",
         }}
       >
-        <h1 style={{ color: "white" }}>Date Profile</h1>
+        <h1 style={{ color: "black" }}>Date Profile</h1>
       </Stack>
       <Stack
         direction="column"
@@ -48,7 +50,7 @@ const Contact = () => {
           onClick={handlePrivacyPolicyButtonClicked}
           sx={{
             cursor: "pointer",
-            color: "#fff",
+            color: "black",
             fontSize: "17px",
             borderRadius: "1rem",
             border: "1px solid #857f74",
@@ -79,12 +81,12 @@ const Contact = () => {
             spacing={2}
             sx={{ marginTop: "20px", textAlign: "center" }}
           >
-            <Typography sx={{ color: "white", fontSize: "20px" }}>
+            <Typography sx={{ color: "black", fontSize: "20px" }}>
               Contact Us
             </Typography>
             <Button
               onClick={toggleExpansion}
-              style={{ color: "white", marginTop: "5px" }}
+              style={{ color: "black", marginTop: "5px" }}
             >
               {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </Button>
@@ -101,21 +103,21 @@ const Contact = () => {
                 padding: "10px",
               }}
             >
-              <Typography sx={{ color: "white" }}>
+              <Typography sx={{ color: "black" }}>
                 Email: 22028153@vnu.edu.vn
               </Typography>
-              <Typography sx={{ color: "white" }}>
+              <Typography sx={{ color: "black" }}>
                 Online request form:{" "}
                 <a
                   href="https://courses.uet.vnu.edu.vn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: "white" }}
+                  style={{ color: "black" }}
                 >
                   https://courses.uet.vnu.edu.vn
                 </a>
               </Typography>
-              <Typography sx={{ color: "white" }}>
+              <Typography sx={{ color: "black" }}>
                 Postal address: Trường Đại học Công nghệ, Đại học Quốc gia Hà
                 Nội
               </Typography>
