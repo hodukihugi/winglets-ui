@@ -42,13 +42,18 @@ export const Items = ({ value, onDelete, onEdit }) => {
 
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          backgroundColor: "white",
+        }}
+      >
         <Stack
           direction="row"
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            backgroundColor: "white",
           }}
         >
           <Button
@@ -56,7 +61,7 @@ export const Items = ({ value, onDelete, onEdit }) => {
             onClick={handlePopoverOpen}
             sx={{
               cursor: "pointer",
-              color: "#fff",
+              color: "black", // Màu văn bản
               fontSize: "17px",
               borderRadius: "1rem",
               border: "1px solid #857f74",
@@ -66,7 +71,7 @@ export const Items = ({ value, onDelete, onEdit }) => {
               height: "40px",
               textTransform: "none",
               "&:hover": {
-                borderColor: "white",
+                borderColor: "black", // Màu border khi hover
               },
               "&:active": {
                 transform: "scale(0.98)",
@@ -111,8 +116,8 @@ export const Items = ({ value, onDelete, onEdit }) => {
                   value={input}
                   InputProps={{
                     style: {
-                      color: "white",
-                      backgroundColor: "#181a1b",
+                      color: "black",
+                      backgroundColor: "white",
                     },
                   }}
                   onChange={onInputChanged}
@@ -142,7 +147,7 @@ export const Items = ({ value, onDelete, onEdit }) => {
                     onClick={onDoneButtonClicked}
                     sx={{
                       cursor: "pointer",
-                      color: "#fff",
+                      color: "black", // Màu văn bản
                       fontSize: "17px",
                       borderRadius: "1rem",
                       border: "1px solid #857f74",
@@ -153,7 +158,7 @@ export const Items = ({ value, onDelete, onEdit }) => {
                       backgroundColor: "#ffd700",
                       textTransform: "none",
                       "&:hover": {
-                        borderColor: "white",
+                        borderColor: "black", // Màu border khi hover
                       },
                       "&:active": {
                         transform: "scale(0.98)",

@@ -30,17 +30,21 @@ const Birthdate = () => {
         spacing={2}
         alignItems="center"
         justifyContent="center"
-        sx={{ marginTop: "20px", textAlign: "center" }}
+        sx={{
+          marginTop: "20px",
+          textAlign: "center",
+          backgroundColor: "white",
+        }}
       >
         <Grid item>
-          <Typography sx={{ color: "white", fontSize: "20px" }}>
+          <Typography sx={{ color: "black", fontSize: "20px" }}>
             Date Of Birth
           </Typography>
         </Grid>
         <Grid item>
           <Button
             onClick={toggleExpansion}
-            style={{ color: "white", marginLeft: "50px" }}
+            style={{ color: "black", marginLeft: "50px" }}
           >
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
@@ -51,22 +55,26 @@ const Birthdate = () => {
           direction="column"
           alignItems="center"
           spacing={2}
-          sx={{ marginTop: "10px", justifyContent: "center" }}
+          sx={{
+            marginTop: "10px",
+            justifyContent: "center",
+            backgroundColor: "white",
+          }}
         >
-          <h1 style={{ fontSize: "20px", textAlign: "left", color: "white" }}>
+          <h1 style={{ fontSize: "20px", textAlign: "left", color: "black" }}>
             Date of birth
           </h1>
           <LocalizationProvider
             dateAdapter={AdapterDayjs}
-            sx={{ color: "white" }}
+            sx={{ color: "black" }}
           >
             <DatePicker
               value={birthdate}
               onChange={handleBirthdateChange}
-              sx={{ color: "white", maxWidth: "507px" }}
+              sx={{ color: "black", maxWidth: "507px" }}
             />
           </LocalizationProvider>
-          <h1 style={{ fontSize: "20px", textAlign: "left", color: "white" }}>
+          <h1 style={{ fontSize: "20px", textAlign: "left", color: "black" }}>
             Age: {calculateAge(birthdate)}
           </h1>
         </Stack>

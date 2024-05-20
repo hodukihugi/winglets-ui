@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Grid, Typography, Menu, MenuItem } from "@mui/material";
+import { Button, Grid, Typography, Menu, MenuItem, Stack } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { useAppDispatch } from "../../redux/hooks";
@@ -34,12 +34,15 @@ const Horoscope = () => {
     localStorage.setItem("selectedHoroscope", horoscope);
     handleClose();
   };
+
   const dispatch = useAppDispatch();
-  dispatch(
-    setHoroscope({
-      horoscope: selectedHoroscope,
-    })
-  );
+  useEffect(() => {
+    dispatch(
+      setHoroscope({
+        horoscope: selectedHoroscope,
+      })
+    );
+  }, [selectedHoroscope, dispatch]);
 
   return (
     <>
@@ -48,30 +51,43 @@ const Horoscope = () => {
         spacing={2}
         alignItems="center"
         justifyContent="center"
-        sx={{ marginTop: "20px", textAlign: "center" }}
+        sx={{
+          marginTop: "20px",
+          textAlign: "center",
+          backgroundColor: "white",
+        }}
       >
         <Grid item>
-          <Typography sx={{ color: "white", fontSize: "20px" }}>
+          <Typography sx={{ color: "black", fontSize: "20px" }}>
             Star sign
           </Typography>
         </Grid>
         <Grid item>
           <Button
             onClick={toggleExpansion}
-            style={{ color: "white", marginLeft: "50px" }}
+            style={{ color: "black", marginLeft: "50px" }}
           >
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
         </Grid>
       </Grid>
       {isExpanded && (
-        <div style={{ color: "white", textAlign: "center" }}>
+        <Stack
+          direction="column"
+          alignItems="center"
+          spacing={2}
+          sx={{
+            marginTop: "10px",
+            justifyContent: "center",
+            backgroundColor: "white",
+          }}
+        >
           <Button
             onClick={handleClick}
             variant="outlined"
             sx={{
               cursor: "pointer",
-              color: "#fff",
+              color: "#000",
               fontSize: "17px",
               borderRadius: "1rem",
               border: "1px solid #857f74",
@@ -80,12 +96,14 @@ const Horoscope = () => {
               width: "416px",
               height: "40px",
               textTransform: "none",
+              backgroundColor: "white", // Ensure background is white
               "&:hover": {
-                borderColor: "white",
+                borderColor: "#ffd700",
               },
               "&:active": {
                 transform: "scale(0.98)",
               },
+              boxShadow: "none", // Remove any box shadows
             }}
           >
             {selectedHoroscope
@@ -96,6 +114,14 @@ const Horoscope = () => {
             anchorEl={horoscopeAnchorEL}
             open={Boolean(horoscopeAnchorEL)}
             onClose={handleClose}
+            sx={{
+              "& .MuiPaper-root": {
+                backgroundColor: "white",
+                color: "black",
+                boxShadow: "none", // Ensure no box shadow on menu
+                border: "1px solid #857f74", // Match the button border
+              },
+            }}
           >
             {[
               "Aries",
@@ -105,7 +131,7 @@ const Horoscope = () => {
               "Leo",
               "Virgo",
               "Libra",
-              "Scopion",
+              "Scorpio",
               "Sagittarius",
               "Capricorn",
               "Aquarius",
@@ -114,12 +140,18 @@ const Horoscope = () => {
               <MenuItem
                 key={horoscope}
                 onClick={() => handleHoroscopeSelect(horoscope)}
+                sx={{
+                  backgroundColor: "white", // Ensure menu items have white background
+                  "&:hover": {
+                    backgroundColor: "#f0f0f0", // Light grey on hover
+                  },
+                }}
               >
                 {horoscope}
               </MenuItem>
             ))}
           </Menu>
-        </div>
+        </Stack>
       )}
     </>
   );

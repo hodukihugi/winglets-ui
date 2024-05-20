@@ -33,14 +33,14 @@ const Language = () => {
         sx={{ marginTop: "20px", textAlign: "center" }}
       >
         <Grid item>
-          <Typography sx={{ color: "white", fontSize: "20px" }}>
+          <Typography sx={{ color: "black", fontSize: "20px" }}>
             {t("language")}
           </Typography>
         </Grid>
         <Grid item>
           <Button
             onClick={toggleExpansion}
-            style={{ color: "white", marginLeft: "50px" }}
+            style={{ color: "black", marginLeft: "50px" }}
           >
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
@@ -58,10 +58,10 @@ const Language = () => {
             <InputLabel
               id="demo-simple-select-label"
               InputLabelProps={{
-                style: { color: "white" },
+                style: { color: "black" },
               }}
               sx={{
-                color: "white",
+                color: "black",
               }}
             >
               Languages
@@ -75,18 +75,18 @@ const Language = () => {
               onChange={handleChange}
               sx={{
                 "& .MuiInputBase-input": {
-                  color: "white",
+                  color: "black",
                 },
 
                 "& .MuiSelect-root": {
-                  color: "white",
+                  color: "black",
                   width: "100%",
                   height: "100%",
                   minWidth: "inherit",
                   minHeight: "inherit",
                 },
                 "& .MuiMenuItem-root": {
-                  color: "white",
+                  color: "black",
                 },
               }}
             >

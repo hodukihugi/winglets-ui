@@ -28,17 +28,21 @@ const AgePreferences = () => {
         spacing={2}
         alignItems="center"
         justifyContent="center"
-        sx={{ marginTop: "20px", textAlign: "center" }}
+        sx={{
+          marginTop: "20px",
+          textAlign: "center",
+          backgroundColor: "white",
+        }}
       >
         <Grid item>
-          <Typography sx={{ color: "white", fontSize: "20px" }}>
+          <Typography sx={{ color: "black", fontSize: "20px" }}>
             Age Preferences
           </Typography>
         </Grid>
         <Grid item>
           <Button
             onClick={toggleExpansion}
-            style={{ color: "white", marginLeft: "50px" }}
+            style={{ color: "black", marginLeft: "50px" }}
           >
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
@@ -51,6 +55,7 @@ const AgePreferences = () => {
             margin: "auto",
             display: "flex",
             justifyContent: "center",
+            backgroundColor: "white",
           }}
         >
           <Slider

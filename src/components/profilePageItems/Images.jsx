@@ -25,7 +25,7 @@ const Images = () => {
 
   return (
     <div style={{ margin: "auto", marginTop: "80px", marginBottom: "50px" }}>
-      <h1 style={{ fontSize: "20px", textAlign: "left", color: "white" }}>
+      <h1 style={{ fontSize: "20px", textAlign: "left", color: "black" }}>
         Image
       </h1>
       <ImageList sx={{ width: 400, height: 400 }}>

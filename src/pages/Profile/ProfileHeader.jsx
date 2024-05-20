@@ -5,9 +5,9 @@ import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import "../../assets/font/stylesheet.css";
 import MyProfile from "../../components/profileItems/myProfile";
-import {useAppDispatch} from "../../redux/hooks";
-import {logout} from "../../redux/slices/auth.slice";
-
+import { useAppDispatch } from "../../redux/hooks";
+import { logout } from "../../redux/slices/auth.slice";
+import "../../assets/font/Roboto.css";
 const ProfileHeader = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
@@ -25,23 +25,23 @@ const ProfileHeader = () => {
     navigate("/");
   };
 
-  const handleLogout = () =>{
-      dispatch(logout());
-      navigate('/login')
-  }
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
 
   return (
     <div>
       <Stack
         direction="column"
         sx={{
-          borderRight: "1px solid #857f74",
+          borderRight: "1px solid #F04393",
           position: "fixed",
           top: 0,
           left: 0,
-          width: "400px",
-          height: "100%",
-          backgroundColor: "#181a1b",
+          width: "25%",
+          height: "100vh",
+          backgroundColor: "white",
           zIndex: 1,
         }}
       >
@@ -56,7 +56,7 @@ const ProfileHeader = () => {
             hidden={isTransitioning}
             sx={{ p: 0 }}
           >
-            <ArrowBackIosIcon sx={{ color: "white" }} />
+            <ArrowBackIosIcon sx={{ color: "black" }} />
           </Button>
           <img
             src={MyProfile.avatar}
@@ -97,7 +97,7 @@ const ProfileHeader = () => {
               textTransform: "none",
               color: "#857f74",
               "&.Mui-selected": {
-                color: "white",
+                color: "black",
                 fontSize: 25,
               },
             }}
@@ -114,7 +114,7 @@ const ProfileHeader = () => {
               textTransform: "none",
               color: "#857f74",
               "&.Mui-selected": {
-                color: "white",
+                color: "black",
                 fontSize: 25,
               },
             }}
@@ -131,7 +131,7 @@ const ProfileHeader = () => {
               textTransform: "none",
               color: "#857f74",
               "&.Mui-selected": {
-                color: "white",
+                color: "black",
                 fontSize: 25,
               },
             }}

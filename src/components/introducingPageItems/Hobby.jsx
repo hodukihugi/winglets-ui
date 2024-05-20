@@ -39,16 +39,17 @@ const HobbyComponent = () => {
         justifyContent: "center",
         marginTop: "20px",
         textAlign: "center",
+        backgroundColor: "white",
       }}
     >
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item>
-          <Typography sx={{ color: "white", fontSize: "20px" }}>
+          <Typography sx={{ color: "black", fontSize: "20px" }}>
             Hobby
           </Typography>
         </Grid>
         <Grid item>
-          <Button onClick={toggleExpansion} style={{ color: "white" }}>
+          <Button onClick={toggleExpansion} style={{ color: "black" }}>
             {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
         </Grid>
@@ -69,13 +70,13 @@ const HobbyComponent = () => {
             width: 416,
             marginTop: 2,
             "& .MuiInputBase-root": {
-              color: "white", // Text color
+              color: "black", // Text color
             },
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: "white", // Border color
             },
             "& .MuiSvgIcon-root": {
-              color: "white", // Dropdown arrow color
+              color: "black", // Dropdown arrow color
             },
             "& .MuiAutocomplete-tag": {
               backgroundColor: "white", // Background color of selected items
