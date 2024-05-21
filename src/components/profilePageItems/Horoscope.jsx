@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { Button, Grid, Typography, Menu, MenuItem, Stack } from "@mui/material";
+import { Button, Grid, Typography, Menu, MenuItem } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { useAppDispatch } from "../../redux/hooks";
-import { setHoroscope } from "../../redux/slices/profile.slice";
+import {Stack} from "@mui/system";
 
 const Horoscope = () => {
   const [horoscopeAnchorEL, setHoroscopeAnchorEL] = useState(null);
