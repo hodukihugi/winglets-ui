@@ -1,10 +1,5 @@
 /* Policy.css */
 
-/* Áp dụng màu nền cho toàn bộ trang */
-body {
-  background-color: #181a1b;
-}
-
 /* Style for the privacy policy container */
 .privacy-policy-container {
   color: white;

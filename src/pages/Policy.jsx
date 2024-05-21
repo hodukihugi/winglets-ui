@@ -1,7 +1,10 @@
 import "./Policy.css";
 const Policy = () => {
   return (
-    <div className="privacy-policy-container">
+    <div
+      className="privacy-policy-container"
+      style={{ backgroundColor: "black", width: "100%" }}
+    >
       <h1>Winglets Privacy Policy</h1>
       <div className="privacy-policy-content">
         <p>

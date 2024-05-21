@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { hideTopLoading, showTopLoading } from "../redux/slices/common.slice";
 import { useNavigate } from "react-router-dom";
 import "./home.css";
-import {setIsAnswered, setName} from "../redux/slices/profile.slice";
+import { setIsAnswered, setName } from "../redux/slices/profile.slice";
 const Home = () => {
   const [matchedProfile, setMatchedProfile] = useState([]);
   const token = useAppSelector(selectAuthToken);
@@ -25,15 +25,19 @@ const Home = () => {
       if (data && data.message !== "success") {
         navigate("/createProfile");
       }
-      if(data && data.data && data.data.answered === 1){
-        dispatch(setIsAnswered({
-          isAnswered: true,
-        }))
+      if (data && data.data && data.data.answered === 1) {
+        dispatch(
+          setIsAnswered({
+            isAnswered: true,
+          })
+        );
       }
-      if(data && data.data && data.data.name !== null){
-        dispatch(setName({
-          name: data.data.name,
-        }))
+      if (data && data.data && data.data.name !== null) {
+        dispatch(
+          setName({
+            name: data.data.name,
+          })
+        );
       }
     }
   }, [isLoading]);
@@ -41,7 +45,7 @@ const Home = () => {
   console.log(data);
 
   return (
-    <div className="root-home">
+    <div className="root-home" style={{ overflow: "hidden" }}>
       <div className="title"> Winglets</div>
       <Header matchedProfile={matchedProfile} matchedPeople={matchedPeople} />
       <div style={{ marginLeft: "28%", padding: 0 }}>

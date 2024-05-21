@@ -2,10 +2,16 @@ import { ImageList, ImageListItem } from "@mui/material";
 
 const ImagesPreview = ({ character }) => {
   return (
-    <div>
-      <ImageList
-        sx={{ width: 600, height: "90%", marginRight: 16, padding: 0 }}
-      >
+    <div
+      style={{
+        height: "90vh",
+        overflowY: "auto",
+        backgroundColor: "white",
+        overflowX: "hidden",
+        marginRight: "10%",
+      }}
+    >
+      <ImageList sx={{ width: 600, marginRight: 16, padding: 0, margin: 0 }}>
         {character.images.map((imgSrc, index) => (
           <ImageListItem key={index}>
             <img
@@ -15,6 +21,7 @@ const ImagesPreview = ({ character }) => {
                 objectFit: "cover",
                 width: "100%",
                 height: "100%",
+                margin: 0,
               }}
               loading="lazy"
             />

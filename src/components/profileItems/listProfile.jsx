@@ -70,6 +70,7 @@ const listProfile = [
       "https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg",
       "https://t3.ftcdn.net/jpg/04/60/91/88/360_F_460918802_XVCymFr7MoziFpnInbTDvrlblYhvAOi2.jpg",
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIi-_K-lJoInpIdhSuyuU-Jvx6_EW0XDjXem3JUdFaREoGQWcG5kTlytmwHfdQhJHeX1M&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIi-_K-lJoInpIdhSuyuU-Jvx6_EW0XDjXem3JUdFaREoGQWcG5kTlytmwHfdQhJHeX1M&usqp=CAU",
     ],
   },
 ];
