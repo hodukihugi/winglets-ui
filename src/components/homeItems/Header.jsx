@@ -4,6 +4,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { useState } from "react";
 import myProfile from "../profileItems/myProfile";
+import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import RouteIcon from "@mui/icons-material/Route";
 const Header = ({ matchedProfile, matchedPeople }) => {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
@@ -130,13 +132,13 @@ const Header = ({ matchedProfile, matchedPeople }) => {
   return (
     <Stack
       sx={{
-        borderRight: "1px solid #857f74",
+        marginLeft: "8%",
         position: "fixed",
         marginTop: "10px",
         left: 0,
-        width: "400px",
-        height: "100%",
-        backgroundColor: "#white",
+        width: "16%",
+        height: "100vh",
+        backgroundColor: "white",
         zIndex: 1,
         padding: "10px",
       }}
@@ -167,28 +169,7 @@ const Header = ({ matchedProfile, matchedPeople }) => {
           </span>
         )}
       </Stack>
-      {/* {isExpanded && (
-        <Button
-          onClick={toggleExpansion}
-          sx={{
-            cursor: "pointer",
-            color: "#fff",
-            fontSize: "17px",
-            marginTop: "20px",
-            position: "relative",
-            transition: "0.1s",
-            width: "400px",
-            height: "40px",
-            backgroundColor: "#f3a7ad",
-            textTransform: "none",
-            "&:active": {
-              transform: "scale(0.98)",
-            },
-          }}
-        >
-          Back to meeting the people
-        </Button>
-      )} */}
+
       <Stack
         direction="row"
         alignItems="center"
@@ -201,19 +182,37 @@ const Header = ({ matchedProfile, matchedPeople }) => {
           borderTop: "1px solid #857f74",
         }}
       >
-        <span style={{ color: "black" }}>Match Queue</span>
-        <Button
-          onClick={toggleExpansion}
-          style={{ color: "black", marginTop: "5px" }}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginTop: "8px",
+            marginBottom: "8px",
+          }}
         >
+          <RouteIcon style={{ color: "black", marginRight: "8px" }} />
+
+          <span style={{ color: "black" }}>Match Queue</span>
+        </div>
+        <Button onClick={toggleExpansion} style={{ color: "black" }}>
           {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </Button>
       </Stack>
       {isExpanded &&
         matchedProfile.map((item, index) => matchingPeople(item, index))}
-      <span style={{ color: "black", marginTop: "20px", marginBottom: "5px" }}>
-        Conversations
-      </span>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginTop: "8px",
+          marginBottom: "5px",
+        }}
+      >
+        <QuestionAnswerIcon style={{ color: "#F04393", marginRight: "8px" }} />
+        <span style={{ color: "#F04393", fontSize: "16px" }}>
+          Conversations
+        </span>
+      </div>
       {matchedPeople.map((item, index) => matchedItem(item, index))}
     </Stack>
   );
