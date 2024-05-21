@@ -12,8 +12,6 @@ import AddIcon from "@mui/icons-material/Add";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { Items } from "./Items";
-import { useAppDispatch } from "../../redux/hooks";
-import { setHometown } from "../../redux/slices/profile.slice";
 
 const HomeTown = () => {
   const [homeTownInput, setHomeTownInput] = useState("");
@@ -54,8 +52,7 @@ const HomeTown = () => {
   };
 
   const homeTownOpen = Boolean(homeTownAnchorEl);
-  const dispatch = useAppDispatch();
-  dispatch(setHometown({ homeTown: homeTownInput }));
+
 
   return (
     <>

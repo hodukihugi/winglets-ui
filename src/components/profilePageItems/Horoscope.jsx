@@ -34,14 +34,7 @@ const Horoscope = () => {
     handleClose();
   };
 
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(
-      setHoroscope({
-        horoscope: selectedHoroscope,
-      })
-    );
-  }, [selectedHoroscope, dispatch]);
+
 
   return (
     <>
