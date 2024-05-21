@@ -17,32 +17,32 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  useEffect(() => {
-    if (isLoading) {
-      dispatch(showTopLoading());
-    } else {
-      dispatch(hideTopLoading());
-      if (data && data.message !== "success") {
-        navigate("/createProfile");
-      }
-      if (data && data.data && data.data.answered === 1) {
-        dispatch(
-          setIsAnswered({
-            isAnswered: true,
-          })
-        );
-      }
-      if (data && data.data && data.data.name !== null) {
-        dispatch(
-          setName({
-            name: data.data.name,
-          })
-        );
-      }
-    }
-  }, [isLoading]);
-  console.log(token);
-  console.log(data);
+  // useEffect(() => {
+  //   if (isLoading) {
+  //     dispatch(showTopLoading());
+  //   } else {
+  //     dispatch(hideTopLoading());
+  //     if (data && data.message !== "success") {
+  //       navigate("/createProfile");
+  //     }
+  //     if (data && data.data && data.data.answered === 1) {
+  //       dispatch(
+  //         setIsAnswered({
+  //           isAnswered: true,
+  //         })
+  //       );
+  //     }
+  //     if (data && data.data && data.data.name !== null) {
+  //       dispatch(
+  //         setName({
+  //           name: data.data.name,
+  //         })
+  //       );
+  //     }
+  //   }
+  // }, [isLoading]);
+  // console.log(token);
+  // console.log(data);
 
   return (
     <div className="root-home" style={{ overflow: "hidden" }}>

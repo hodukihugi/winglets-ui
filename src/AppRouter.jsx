@@ -23,14 +23,14 @@ const AppRouter = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const publicPaths = ["/register", "/verification"];
-    if (!authToken && !publicPaths.includes(location.pathname)) {
-      console.log("No auth token found");
-      navigate("/login");
-      dispatch(hideTopLoading());
-    }
-  }, [authToken, location.pathname, navigate, dispatch]);
+  // useEffect(() => {
+  //   const publicPaths = ["/register", "/verification"];
+  //   if (!authToken && !publicPaths.includes(location.pathname)) {
+  //     console.log("No auth token found");
+  //     navigate("/login");
+  //     dispatch(hideTopLoading());
+  //   }
+  // }, [authToken, location.pathname, navigate, dispatch]);
 
   return (
     <Routes>
