@@ -201,11 +201,11 @@ const ProfileCreation = () => {
         dispatch(
           addToast({
             type: "success",
-            message: "create successfully,please login again",
+            message: "create successfully",
           })
         );
-        dispatch(logout());
-        navigate("/login");
+
+        navigate("/");
       }
     } catch (error) {
       console.log(error);

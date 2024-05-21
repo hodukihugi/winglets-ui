@@ -5,8 +5,6 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import InterestingItems from "./InterestingItems";
-import { useAppDispatch } from "../../redux/hooks";
-import { setHobby } from "../../redux/slices/profile.slice";
 
 const HobbyComponent = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -23,12 +21,7 @@ const HobbyComponent = () => {
 
     setSelectedOptions(newValue);
   };
-  const dispatch = useAppDispatch();
-  dispatch(
-    setHobby({
-      hobby: selectedOptions,
-    })
-  );
+
 
   return (
     <Box

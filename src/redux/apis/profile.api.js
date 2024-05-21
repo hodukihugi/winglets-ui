@@ -47,7 +47,7 @@ export const profileApi = createApi({
                 method: 'GET',
                 headers: {'Authorization': `Bearer ${token}`},
             }),
-            invalidatesTags:['profile']
+            providesTags:['profile']
         }),
         uploadProfileImage: builder.mutation({
             query: (req) => ({
@@ -65,7 +65,21 @@ export const profileApi = createApi({
             }),
             invalidatesTags:['profile']
         }),
+        answerQuestion: builder.mutation({
+            query(req) {
+                const token = localStorage.getItem('authToken');
+                return{
+                    url: '/api/answer',
+                    method: 'POST',
+                    body: req,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                };
+            },
+            invalidatesTags:['profile']
+        }),
     }),
 });
 
-export const { useCreateProfileMutation, useUpdateProfileMutation, useGetProfileQuery, useUploadProfileImageMutation, useRemoveProfileImageMutation } = profileApi;
+export const { useCreateProfileMutation, useUpdateProfileMutation, useGetProfileQuery, useUploadProfileImageMutation, useRemoveProfileImageMutation, useAnswerQuestionMutation } = profileApi;

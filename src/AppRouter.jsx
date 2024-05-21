@@ -22,13 +22,13 @@ const AppRouter = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (!authToken) {
-  //     console.log("No auth token found");
-  //     navigate("/Login");
-  //     dispatch(hideTopLoading());
-  //   }
-  // }, [authToken]);
+  useEffect(() => {
+    if (!authToken) {
+      console.log("No auth token found");
+      navigate("/Login");
+      dispatch(hideTopLoading());
+    }
+  }, [authToken]);
 
   return (
     <Routes>

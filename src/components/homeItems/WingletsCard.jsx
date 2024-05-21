@@ -7,13 +7,14 @@ import UndoIcon from "@mui/icons-material/Undo";
 import PopupCard from "./PopupCard";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import {useAppSelector} from "../../redux/hooks";
+import {selectIsAnswered} from "../../redux/slices/profile.slice";
 
 function WingletsCard({ matchedProfile, setMatchedProfile }) {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(Profile.length - 1);
   const currentIndexRef = useRef(currentIndex);
-  const [checkProfile, setCheckProfile] = useState(true);
-
+  const check = useAppSelector(selectIsAnswered);
   const childRefs = useMemo(
     () =>
       Array(Profile.length)
@@ -137,7 +138,7 @@ function WingletsCard({ matchedProfile, setMatchedProfile }) {
 
   return (
     <div>
-      {checkProfile ? (
+      {check ? (
         <div>
           <div style={containerStyles}>
             {Profile.map((character, index) => (

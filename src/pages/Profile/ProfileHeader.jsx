@@ -8,6 +8,7 @@ import MyProfile from "../../components/profileItems/myProfile";
 import { useAppDispatch } from "../../redux/hooks";
 import { logout } from "../../redux/slices/auth.slice";
 import "../../assets/font/Roboto.css";
+import {profileLogout} from "../../redux/slices/profile.slice";
 const ProfileHeader = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
@@ -27,6 +28,7 @@ const ProfileHeader = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(profileLogout());
     navigate("/login");
   };
 
