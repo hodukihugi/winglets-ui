@@ -49,7 +49,7 @@ const Horoscope = () => {
       >
         <Grid item>
           <Typography sx={{ color: "black", fontSize: "20px" }}>
-            Star sign
+            Horoscope
           </Typography>
         </Grid>
         <Grid item>
@@ -97,7 +97,7 @@ const Horoscope = () => {
             }}
           >
             {selectedHoroscope
-              ? `Star sign: ${selectedHoroscope}`
+              ? `Horoscope: ${selectedHoroscope}`
               : "Select Horoscope"}
           </Button>
           <Menu

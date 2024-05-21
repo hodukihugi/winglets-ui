@@ -24,7 +24,6 @@ import { useAppDispatch } from "../../redux/hooks";
 
 import { useCreateProfileMutation } from "../../redux/apis/profile.api";
 import { addToast, showTopLoading } from "../../redux/slices/common.slice";
-import { logout } from "../../redux/slices/auth.slice";
 
 const ProfileCreation = () => {
   const navigate = useNavigate();
@@ -413,115 +412,115 @@ const ProfileCreation = () => {
           Age: {calculateAge(birthdate)}
         </h1>
       </Stack>
-      <Stack
-        direction="column"
-        alignItems="center"
-        spacing={2}
-        sx={{ marginTop: "10px", justifyContent: "center" }}
-      >
-        {jobs.map((job, index) => (
-          <Items
-            key={index}
-            value={job}
-            onDelete={onDeleteJob}
-            onEdit={(value) => onUpdateJob(value, index)}
-          />
-        ))}
-        <Button
-          startIcon={<AddIcon />}
-          variant="outlined"
-          onClick={handleJobButtonClicked}
-          sx={{
-            cursor: "pointer",
-            color: "black",
-            fontSize: "17px",
-            borderRadius: "1rem",
-            border: "1px solid #857f74",
-            position: "relative",
-            transition: "0.1s",
-            width: "416px",
-            height: "40px",
-            textTransform: "none",
-            "&:hover": {
-              borderColor: "black",
-            },
-            "&:active": {
-              transform: "scale(0.98)",
-            },
-          }}
-        >
-          Add a job
-        </Button>
-        <Popover
-          open={Boolean(jobAnchorEl)}
-          anchorEl={jobAnchorEl}
-          onClose={handleJobClose}
-          anchorOrigin={{
-            vertical: "center",
-            horizontal: "center",
-          }}
-          transformOrigin={{
-            vertical: "center",
-            horizontal: "center",
-          }}
-          PaperProps={{
-            sx: {
-              width: "480px",
-              height: "156px",
-              backdropFilter: "blur(5px)",
-              position: "absolute",
-              backgroundColor: "white",
-              color: "black",
-              boxShadow: "0px 2px 4px rgba(0,0,0,0.10)",
-            },
-          }}
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            sx: {
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-            },
-          }}
-        >
-          <Stack
-            direction="column"
-            alignItems="center"
-            spacing={2}
-            sx={{
-              marginTop: "10px",
-              justifyContent: "center",
-              backgroundColor: "white",
-              color: "black",
-            }}
-          >
-            <Typography>Add a job</Typography>
-            <TextField
-              id="job"
-              InputProps={{
-                style: {
-                  color: "black",
-                  backgroundColor: "white",
-                },
-              }}
-              onChange={onJobInputChange}
-              size="small"
-              sx={{
-                width: "400px",
-                border: "1px solid #857f74",
-                borderRadius: "4px",
-                "&:hover": {
-                  border: "1px solid #ffd700",
-                },
-              }}
-            />
-            <Button
-              sx={{ textTransform: "none", color: "#ffd700" }}
-              onClick={onJobAddButtonClicked}
-            >
-              Save
-            </Button>
-          </Stack>
-        </Popover>
-      </Stack>
+      {/*<Stack*/}
+      {/*  direction="column"*/}
+      {/*  alignItems="center"*/}
+      {/*  spacing={2}*/}
+      {/*  sx={{ marginTop: "10px", justifyContent: "center" }}*/}
+      {/*>*/}
+      {/*  {jobs.map((job, index) => (*/}
+      {/*    <Items*/}
+      {/*      key={index}*/}
+      {/*      value={job}*/}
+      {/*      onDelete={onDeleteJob}*/}
+      {/*      onEdit={(value) => onUpdateJob(value, index)}*/}
+      {/*    />*/}
+      {/*  ))}*/}
+      {/*  <Button*/}
+      {/*    startIcon={<AddIcon />}*/}
+      {/*    variant="outlined"*/}
+      {/*    onClick={handleJobButtonClicked}*/}
+      {/*    sx={{*/}
+      {/*      cursor: "pointer",*/}
+      {/*      color: "black",*/}
+      {/*      fontSize: "17px",*/}
+      {/*      borderRadius: "1rem",*/}
+      {/*      border: "1px solid #857f74",*/}
+      {/*      position: "relative",*/}
+      {/*      transition: "0.1s",*/}
+      {/*      width: "416px",*/}
+      {/*      height: "40px",*/}
+      {/*      textTransform: "none",*/}
+      {/*      "&:hover": {*/}
+      {/*        borderColor: "black",*/}
+      {/*      },*/}
+      {/*      "&:active": {*/}
+      {/*        transform: "scale(0.98)",*/}
+      {/*      },*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    Add a job*/}
+      {/*  </Button>*/}
+      {/*  <Popover*/}
+      {/*    open={Boolean(jobAnchorEl)}*/}
+      {/*    anchorEl={jobAnchorEl}*/}
+      {/*    onClose={handleJobClose}*/}
+      {/*    anchorOrigin={{*/}
+      {/*      vertical: "center",*/}
+      {/*      horizontal: "center",*/}
+      {/*    }}*/}
+      {/*    transformOrigin={{*/}
+      {/*      vertical: "center",*/}
+      {/*      horizontal: "center",*/}
+      {/*    }}*/}
+      {/*    PaperProps={{*/}
+      {/*      sx: {*/}
+      {/*        width: "480px",*/}
+      {/*        height: "156px",*/}
+      {/*        backdropFilter: "blur(5px)",*/}
+      {/*        position: "absolute",*/}
+      {/*        backgroundColor: "white",*/}
+      {/*        color: "black",*/}
+      {/*        boxShadow: "0px 2px 4px rgba(0,0,0,0.10)",*/}
+      {/*      },*/}
+      {/*    }}*/}
+      {/*    BackdropComponent={Backdrop}*/}
+      {/*    BackdropProps={{*/}
+      {/*      sx: {*/}
+      {/*        backgroundColor: "rgba(0, 0, 0, 0.5)",*/}
+      {/*      },*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    <Stack*/}
+      {/*      direction="column"*/}
+      {/*      alignItems="center"*/}
+      {/*      spacing={2}*/}
+      {/*      sx={{*/}
+      {/*        marginTop: "10px",*/}
+      {/*        justifyContent: "center",*/}
+      {/*        backgroundColor: "white",*/}
+      {/*        color: "black",*/}
+      {/*      }}*/}
+      {/*    >*/}
+      {/*      <Typography>Add a job</Typography>*/}
+      {/*      <TextField*/}
+      {/*        id="job"*/}
+      {/*        InputProps={{*/}
+      {/*          style: {*/}
+      {/*            color: "black",*/}
+      {/*            backgroundColor: "white",*/}
+      {/*          },*/}
+      {/*        }}*/}
+      {/*        onChange={onJobInputChange}*/}
+      {/*        size="small"*/}
+      {/*        sx={{*/}
+      {/*          width: "400px",*/}
+      {/*          border: "1px solid #857f74",*/}
+      {/*          borderRadius: "4px",*/}
+      {/*          "&:hover": {*/}
+      {/*            border: "1px solid #ffd700",*/}
+      {/*          },*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*      <Button*/}
+      {/*        sx={{ textTransform: "none", color: "#ffd700" }}*/}
+      {/*        onClick={onJobAddButtonClicked}*/}
+      {/*      >*/}
+      {/*        Save*/}
+      {/*      </Button>*/}
+      {/*    </Stack>*/}
+      {/*  </Popover>*/}
+      {/*</Stack>*/}
       <div style={{ color: "black", textAlign: "center" }}>
         <Button
           onClick={handleHoroscopeClick}
@@ -545,7 +544,7 @@ const ProfileCreation = () => {
             },
           }}
         >
-          {selectHoro ? `Star sign: ${selectHoro}` : "Select Horoscope"}
+          {selectHoro ? `Horoscope: ${selectHoro}` : "Select Horoscope"}
         </Button>
         <Menu
           anchorEl={horoscopeAnchorEL}
@@ -575,36 +574,36 @@ const ProfileCreation = () => {
           ))}
         </Menu>
       </div>{" "}
-      <Autocomplete
-        multiple
-        id="checkboxes-tags-demo"
-        options={InterestingItems}
-        disableCloseOnSelect
-        getOptionLabel={(option) => option.title}
-        value={selectedOptions}
-        onChange={handleHobbyChange}
-        renderOption={(props, option, { selected }) => (
-          <li {...props}>{option.title}</li>
-        )}
-        sx={{
-          width: 416,
-          marginTop: 2,
-          "& .MuiInputBase-root": {
-            color: "black", // Text color
-          },
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "black", // Border color
-          },
-          "& .MuiSvgIcon-root": {
-            color: "black", // Dropdown arrow color
-          },
-          "& .MuiAutocomplete-tag": {
-            backgroundColor: "black", // Background color of selected items
-            color: "black", // Text color of selected items
-          },
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
+      {/*<Autocomplete*/}
+      {/*  multiple*/}
+      {/*  id="checkboxes-tags-demo"*/}
+      {/*  options={InterestingItems}*/}
+      {/*  disableCloseOnSelect*/}
+      {/*  getOptionLabel={(option) => option.title}*/}
+      {/*  value={selectedOptions}*/}
+      {/*  onChange={handleHobbyChange}*/}
+      {/*  renderOption={(props, option, { selected }) => (*/}
+      {/*    <li {...props}>{option.title}</li>*/}
+      {/*  )}*/}
+      {/*  sx={{*/}
+      {/*    width: 416,*/}
+      {/*    marginTop: 2,*/}
+      {/*    "& .MuiInputBase-root": {*/}
+      {/*      color: "black", // Text color*/}
+      {/*    },*/}
+      {/*    "& .MuiOutlinedInput-notchedOutline": {*/}
+      {/*      borderColor: "black", // Border color*/}
+      {/*    },*/}
+      {/*    "& .MuiSvgIcon-root": {*/}
+      {/*      color: "black", // Dropdown arrow color*/}
+      {/*    },*/}
+      {/*    "& .MuiAutocomplete-tag": {*/}
+      {/*      backgroundColor: "black", // Background color of selected items*/}
+      {/*      color: "black", // Text color of selected items*/}
+      {/*    },*/}
+      {/*  }}*/}
+      {/*  renderInput={(params) => <TextField {...params} />}*/}
+      {/*/>*/}
       <Stack
         direction="column"
         alignItems="center"

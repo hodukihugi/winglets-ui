@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useAppSelector } from "./redux/hooks";
 import { selectAuthToken } from "./redux/slices/auth.slice";
@@ -10,7 +10,7 @@ import Settings from "./pages/Profile/Settings";
 import Contact from "./pages/Profile/ContactAndFAQ";
 import Login from "./pages/User/Login";
 import Policy from "./pages/Policy";
-import QuestionAndAnswer from "./pages/User/Q&A";
+import QuestionAndAnswer from "./pages/Profile/Q&A";
 import ProfileCreation from "./pages/Profile/ProfileCreation";
 import Register from "./pages/User/Register";
 import VerifyEmail from "./pages/User/EmaillVerification";
@@ -20,15 +20,17 @@ import { hideTopLoading } from "./redux/slices/common.slice";
 const AppRouter = () => {
   const authToken = useAppSelector(selectAuthToken);
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!authToken) {
+    const publicPaths = ["/register", "/verification"];
+    if (!authToken && !publicPaths.includes(location.pathname)) {
       console.log("No auth token found");
-      navigate("/Login");
+      navigate("/login");
       dispatch(hideTopLoading());
     }
-  }, [authToken]);
+  }, [authToken, location.pathname, navigate, dispatch]);
 
   return (
     <Routes>
@@ -48,4 +50,5 @@ const AppRouter = () => {
     </Routes>
   );
 };
+
 export default AppRouter;

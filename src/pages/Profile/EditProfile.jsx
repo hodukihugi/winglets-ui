@@ -1,12 +1,11 @@
 import React from "react";
-import { Stack } from "@mui/material";
-import Jobs from "../../components/profilePageItems/Jobs";
-import Hobby from "../../components/profilePageItems/HomeTown";
+import {Button, Stack} from "@mui/material";
 import Horoscope from "../../components/profilePageItems/Horoscope";
-import HobbyComponent from "../../components/introducingPageItems/Hobby";
 import AgePreferences from "../../components/introducingPageItems/AgePreferences";
 import Birthdate from "../../components/profilePageItems/Birthdate";
+import Images from '../../components/profilePageItems/Images';
 import "./editprofile.css";
+import HomeTown from "../../components/profilePageItems/HomeTown";
 const EditProfile = () => {
   return (
     <div
@@ -32,15 +31,17 @@ const EditProfile = () => {
         <h1 style={{ color: "black" }}>Date Profile</h1>
       </Stack>
       <div className="job-item-component">
+        <Images />
         <Birthdate />
-        <Jobs />
-        <Hobby />
+        {/*<Jobs /> */}
         <Horoscope />
         <AgePreferences />
-        <HobbyComponent />
+        {/*<HobbyComponent />*/}
+        <HomeTown />
+        <Button variant="contained">Save</Button>
       </div>
     </div>
-  );
+  ); 
 };
 
 export default EditProfile;

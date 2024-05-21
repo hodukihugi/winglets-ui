@@ -1,4 +1,4 @@
-import "./q&a.css";
+import "../Profile/q&a.css";
 
 function Error({ errorTitle, onClose }) {
   return (

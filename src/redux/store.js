@@ -8,6 +8,7 @@ import {authApi} from "./apis/auth.api";
 import storage from 'redux-persist/lib/storage';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import {profileApi} from "./apis/profile.api";
+import {recommendationApi} from "./apis/recommendation.api";
 const loggerMiddleware = store => next => action => {
   console.log('Dispatching:', action);
   const result = next(action);
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   common: commonReducer,
   [authApi.reducerPath]: authApi.reducer,
   [profileApi.reducerPath]: profileApi.reducer,
+  [recommendationApi.reducerPath]: recommendationApi.reducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
@@ -41,7 +43,7 @@ export const store = configureStore({
           .concat(loggerMiddleware)
           .concat(authApi.middleware)
           .concat(profileApi.middleware)
-
+          .concat(recommendationApi.middleware)
 });
 
 export const persistor = persistStore(store);
