@@ -17,7 +17,8 @@ function WingletsCard({ matchedProfile, setMatchedProfile }) {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(Profile.length - 1);
   const currentIndexRef = useRef(currentIndex);
-  const check = useAppSelector(selectIsAnswered);
+  // const check = useAppSelector(selectIsAnswered);
+  const check = true;
   const childRefs = useMemo(
     () =>
       Array(Profile.length)
