@@ -12,6 +12,7 @@ import {
 import { useAppDispatch } from "../../redux/hooks";
 import { useLoginMutation } from "../../redux/apis/auth.api";
 import { setAuth } from "../../redux/slices/auth.slice";
+import {setIsAnswered} from "../../redux/slices/profile.slice";
 
 function Login() {
   const navigate = useNavigate();
@@ -62,11 +63,15 @@ function Login() {
               authToken: response.data.data.access_token,
             })
           );
+          dispatch(setIsAnswered({
+            isAnswered: false,
+          }))
 
           navigate("/");
         }
 
         dispatch(hideTopLoading());
+
       } catch (error) {
         console.log(error);
       }

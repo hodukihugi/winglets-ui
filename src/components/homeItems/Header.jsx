@@ -6,10 +6,14 @@ import { useState } from "react";
 import myProfile from "../profileItems/myProfile";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import RouteIcon from "@mui/icons-material/Route";
+import {useAppSelector} from "../../redux/hooks";
+import {selectName} from "../../redux/slices/profile.slice";
 const Header = ({ matchedProfile, matchedPeople }) => {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const selectedName = useAppSelector(selectName);
 
   const toggleExpansion = () => {
     setIsExpanded(!isExpanded);
@@ -165,7 +169,7 @@ const Header = ({ matchedProfile, matchedPeople }) => {
 
         {!isTransitioning && (
           <span style={{ color: "black", fontSize: "20px" }}>
-            {myProfile.name}
+            {selectedName}
           </span>
         )}
       </Stack>

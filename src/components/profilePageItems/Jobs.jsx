@@ -12,8 +12,6 @@ import AddIcon from "@mui/icons-material/Add";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { Items } from "./Items";
-import { useDispatch } from "react-redux";
-import { setEducation } from "../../redux/slices/profile.slice";
 
 const Jobs = () => {
   const [jobInput, setJobInput] = useState("");
@@ -39,8 +37,7 @@ const Jobs = () => {
     setAnchorEl(null);
   };
 
-  const dispatch = useDispatch();
-  dispatch(setEducation({ education: jobs }));
+
 
   const onJobInputChange = (e) => {
     setJobInput(e.target.value);
