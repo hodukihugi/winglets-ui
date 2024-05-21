@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Grid, Typography, Menu, MenuItem } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import {Stack} from "@mui/system";
+import { Stack } from "@mui/system";
 
 const Horoscope = () => {
   const [horoscopeAnchorEL, setHoroscopeAnchorEL] = useState(null);
@@ -33,15 +33,6 @@ const Horoscope = () => {
     localStorage.setItem("selectedHoroscope", horoscope);
     handleClose();
   };
-
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(
-      setHoroscope({
-        horoscope: selectedHoroscope,
-      })
-    );
-  }, [selectedHoroscope, dispatch]);
 
   return (
     <>

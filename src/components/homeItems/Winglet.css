@@ -1,0 +1,52 @@
+.card {
+  width: 16%;
+  height: 300px;
+  background-color: #f04393;
+}
+.profile-container {
+  display: flex;
+  margin: 0;
+}
+
+.clear-button {
+  position: absolute;
+  bottom: 24%;
+  left: 75%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  color: #ffc936;
+  border-radius: 50%;
+  width: 50x;
+  height: 50px;
+  z-index: 2;
+}
+
+.done-button {
+  position: absolute;
+  bottom: 24%;
+  left: 87%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  color: #ffc936;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+}
+
+.back-button {
+  position: absolute;
+  bottom: 24%;
+  left: 81%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  color: #ffc936;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+}
+
+.swipe-button {
+  position: absolute;
+}

@@ -33,7 +33,7 @@ const Home = () => {
     <div className="root-home">
       <div className="title"> Winglets</div>
       <Header matchedProfile={matchedProfile} matchedPeople={matchedPeople} />
-      <div style={{ marginLeft: "400px", padding: "10px" }}>
+      <div style={{ marginLeft: "28%", padding: 0 }}>
         <WingletsCard
           matchedProfile={matchedProfile}
           setMatchedProfile={setMatchedProfile}

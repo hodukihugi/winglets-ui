@@ -24,11 +24,8 @@ const Images = () => {
   };
 
   return (
-    <div style={{ margin: "auto", marginTop: "80px", marginBottom: "50px" }}>
-      <h1 style={{ fontSize: "20px", textAlign: "left", color: "black" }}>
-        Image
-      </h1>
-      <ImageList sx={{ width: 400, height: 400 }}>
+    <div style={{ margin: "auto", marginTop: "80px", marginLeft: "4%" }}>
+      <ImageList sx={{ width: 500, height: 400 }}>
         {images.map((item) => (
           <ImageListItem key={item.id}>
             <img

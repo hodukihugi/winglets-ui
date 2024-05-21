@@ -1,35 +1,20 @@
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Mờ với độ mờ là 50% */
-  z-index: 9998; /* Sắp xếp phía dưới popup */
-}
-
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fefefe;
+.swipe-Card {
+  width: 300px;
+  height: 150%;
+  background-color: #ff69b4; /* Màu hồng */
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 400px;
-  z-index: 9999; /* Sắp xếp phía trên cùng */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 4%;
 }
 
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
+.swipe-Card h1 {
+  margin: 10px 0;
 }
 
-.close:hover {
-  color: black;
-  text-decoration: none;
+.swipe-Card span {
+  margin-bottom: 5px;
 }

@@ -137,7 +137,7 @@ const Header = ({ matchedProfile, matchedPeople }) => {
         marginTop: "10px",
         left: 0,
         width: "16%",
-        height: "100vh",
+        height: "80%",
         backgroundColor: "white",
         zIndex: 1,
         padding: "10px",

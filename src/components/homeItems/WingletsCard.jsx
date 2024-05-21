@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import React, { useState, useMemo, useRef, useEffect, Fragment } from "react";
 import TinderCard from "react-tinder-card";
 import Profile from "../profileItems/listProfile";
 import DoneIcon from "@mui/icons-material/Done";
@@ -7,7 +7,9 @@ import UndoIcon from "@mui/icons-material/Undo";
 import PopupCard from "./PopupCard";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import ImagesPreview from "./ImagesPreview";
+import "./Winglet.css";
+import { height, width } from "@mui/system";
 function WingletsCard({ matchedProfile, setMatchedProfile }) {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(Profile.length - 1);
@@ -63,55 +65,16 @@ function WingletsCard({ matchedProfile, setMatchedProfile }) {
     await childRefs[newIndex].current.restoreCard();
   };
 
-  const containerStyles = {
-    width: "1174px",
-    height: "787px",
-    backgroundColor: "inherit",
-    border: "1px solid #857f74",
-    borderRadius: "2rem",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    margin: "0 auto",
-    position: "relative",
-    overflow: "hidden",
-  };
-
   const clearButtonStyles = {
-    position: "absolute",
-    bottom: "20px",
-    left: "1000px",
-    transform: "translateX(-50%)",
-    cursor: "pointer",
-    color: "#ffc936",
     backgroundColor: !canSwipe && "#c3c4d3",
-    borderRadius: "50%",
-    width: "100px",
-    height: "100px",
   };
 
   const doneButtonStyles = {
-    position: "absolute",
-    bottom: "20px",
-    left: "1330px",
-    transform: "translateX(-50%)",
-    cursor: "pointer",
-    color: "#ffc936",
     backgroundColor: !canSwipe && "#c3c4d3",
-    borderRadius: "50%",
-    width: "100px",
-    height: "100px",
   };
 
   const goBackButtonStyle = {
-    position: "absolute",
-    bottom: "20px",
-    left: "1165px",
-    transform: "translateX(-50%)",
-    cursor: "pointer",
     backgroundColor: !canGoBack && "#c3c4d3",
-    color: "#ffc936",
-    borderRadius: "50%",
-    width: "100px",
-    height: "100px",
   };
 
   useEffect(() => {
@@ -139,49 +102,81 @@ function WingletsCard({ matchedProfile, setMatchedProfile }) {
     <div>
       {checkProfile ? (
         <div>
-          <div style={containerStyles}>
+          <div
+            style={{
+              width: "100%",
+              height: "100vh",
+              position: "relative",
+              marginRight: "5%",
+            }}
+          >
             {Profile.map((character, index) => (
-              <TinderCard
-                ref={childRefs[index]}
-                className="swipe"
+              <div
                 key={character.name}
-                onSwipe={(dir) => swiped(dir, character.name, index)}
-                onCardLeftScreen={() => outOfFrame(character.name, index)}
-                preventSwipe={["up", "down"]}
+                className="profile-container"
                 style={{
                   position: "absolute",
                   top: 0,
-                  transform: `translateY(${index * -100}%)`,
-                  zIndex: Profile.length - index,
-                  width: "100%",
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  transform: `translateY(${index * 0}px)`,
+                  zIndex: index === currentIndex ? 1 : 0,
                 }}
               >
-                <div
-                  className="card"
+                <ImagesPreview character={character} />
+                <TinderCard
+                  ref={childRefs[index]}
+                  className="swipe"
+                  key={character.name}
+                  onSwipe={(dir) => swiped(dir, character.name, index)}
+                  onCardLeftScreen={() => outOfFrame(character.name, index)}
+                  preventSwipe={["up", "down"]}
                   style={{
                     position: "absolute",
                     top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    transform: `translateY(${index * 0}px)`,
-                    zIndex: index === currentIndex ? 1 : 0,
+                    transform: `translateY(${index * -100}%)`,
+                    zIndex: Profile.length - index,
+                    width: "100%",
                   }}
                 >
-                  <PopupCard character={character} />
-                </div>
-              </TinderCard>
+                  <div
+                    className="card"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                    }}
+                  >
+                    <PopupCard character={character} />
+                  </div>
+                </TinderCard>
+              </div>
             ))}
           </div>
-          <div className="button">
-            <button style={clearButtonStyles} onClick={() => swipe("left")}>
-              <ClearIcon sx={{ fontSize: "60px" }} />
+          <div className="swipe-buttons">
+            <button
+              className="clear-button"
+              style={clearButtonStyles}
+              onClick={() => swipe("left")}
+            >
+              <ClearIcon sx={{ fontSize: "40px" }} />
             </button>
-            <button style={goBackButtonStyle} onClick={() => goBack()}>
-              <UndoIcon sx={{ fontSize: "60px" }} />
+            <button
+              className="back-button"
+              style={goBackButtonStyle}
+              onClick={() => goBack()}
+            >
+              <UndoIcon sx={{ fontSize: "40px" }} />
             </button>
-            <button style={doneButtonStyles} onClick={() => swipe("right")}>
-              <DoneIcon sx={{ fontSize: "60px" }} />
+            <button
+              className="done-button"
+              style={doneButtonStyles}
+              onClick={() => swipe("right")}
+            >
+              <DoneIcon sx={{ fontSize: "40px" }} />
             </button>
           </div>
         </div>
