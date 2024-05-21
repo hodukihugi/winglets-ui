@@ -1,4 +1,4 @@
-import "./q&a.css";
+import "../Profile/q&a.css";
 import React from "react";
 
 const Success = ({ message, onClose }) => {
